@@ -1,6 +1,16 @@
+/*---------------------------------------------------------------------------
+Project Title         :       CS 230: Project 2 part 1
+File Name             :       Math2D.h
+Author                :       Sawyer Simpson
+Creation Date         :       1/13/2016
+Purpose               :       Collision prototypes
+History
+-1/13/2016    :       Added file header.
+� Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
+----------------------------------------------------------------------------*/
+
 #ifndef MATH2D_H
 #define MATH2D_H
-
 
 #include "Vector2D.h"
 
@@ -31,6 +41,5 @@ Rectangle1: Center is pRect1, width is "Width1" and height is "Height1"
 */
 int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector2D *pRect1, float Width1, float Height1);
 
-int StaticCircleToStaticRect(Vector2D *pCenter, float Radius, Vector2D *pRect, float Width, float Height);
 
 #endif

@@ -1,13 +1,22 @@
+/*---------------------------------------------------------------------------
+Project Title         :       CS 230: Project 2 part 1
+File Name             :       Matrix2D.h
+Author                :       Sawyer Simpson
+Creation Date         :       1/13/2016
+Purpose               :       Matrix2D prototypes
+History
+-1/13/2016    :       Added file header.
+� Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
+----------------------------------------------------------------------------*/
+
 #ifndef MATRIX2D_H
 #define MATRIX2D_H
 
 #include "Vector2D.h"
 
-typedef struct Matrix2D
-{
+typedef struct Matrix2D {
 	float m[3][3];
 }Matrix2D;
-
 
 /*
 This function sets the matrix Result to the identity matrix
@@ -52,5 +61,6 @@ This function multiplies the matrix Mtx with the vector Vec and saves the result
 Result = Mtx * Vec
 */
 void Matrix2DMultVec(Vector2D *pResult, Matrix2D *pMtx, Vector2D *pVec);
+
 
 #endif

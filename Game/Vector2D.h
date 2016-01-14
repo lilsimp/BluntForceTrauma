@@ -1,9 +1,20 @@
+/*---------------------------------------------------------------------------
+Project Title         :       CS 230: Project 2 part 1
+File Name             :       Vector2D.h
+Author                :       Sawyer Simpson
+Creation Date         :       1/13/2016
+Purpose               :       Vector2D prototypes
+History
+-1/13/2016    :       Added file header.
+� Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
+----------------------------------------------------------------------------*/
+
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
-#include <math.h>
+#include "math.h"
 
-#define PI 3.1415926535897932384626433832795
+#define PI      3.1415926535897932384626433832795
 
 typedef struct Vector2D {
 	float x, y;
