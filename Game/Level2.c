@@ -35,11 +35,11 @@ static int current_lives;
 /***************************************************************************/
 void Level2_Load(void) {
 	FILE *fp;
-	fp = fopen("Level2_Health.txt", "r");
+	fp = fopen("Inputs/Level2_Health.txt", "r");
 	fscanf(fp, "%d", &Level2_Health);
 	fclose(fp);
 
-	fp = fopen("Level2_Lives.txt", "r");
+	fp = fopen("Inputs/Level2_Lives.txt", "r");
 	fscanf(fp, "%d", &Level2_Lives);
 	fclose(fp);
 

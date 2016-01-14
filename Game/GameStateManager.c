@@ -25,7 +25,7 @@ static Level* ALL_LEVELS;
 static Level GSM_LEVEL;
 static unsigned int GSM_CURRENT;
 static unsigned int GSM_PREVIOUS;
-       unsigned int GSM_NEXT;			  /* Extern this wherever it needs to be changed, suc has level files. */
+       unsigned int GSM_NEXT;			  /* Extern this wherever it needs to be changed, such as level files. */
 
 static void SetAllLevels(void) {
 	ALL_LEVELS = (Level *)malloc(sizeof(Level) * LEVEL_NUM);
