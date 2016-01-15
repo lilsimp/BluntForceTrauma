@@ -1,40 +1,48 @@
+# $(OUTDIR)$(EXE) : $(OBJECTS)
+# 	$(CC) -o $(OUTDIR)$(EXE) $(OBJECTS)
+#
+# $(OUTDIR)Main.o : Main.c GameStateManager.h GameStateList.h System.h
+# 	$(CC) $(CFLAGS) Main.c -o $(OUTDIR)Main.o
+#
+# $(OUTDIR)GameStateManager.o : GameStateManager.c GameStateManager.h GameStateList.h System.h Input.h Level1.h Level2.h Level3.h
+# 	$(CC) $(CFLAGS) GameStateManager.c -o $(OUTDIR)GameStateManager.o
+#
+# $(OUTDIR)Input.o : Input.c Input.h
+# 	$(CC) $(CFLAGS) Input.c -o $(OUTDIR)Input.o
+#
+# $(OUTDIR)System.o : System.c System.h
+# 	$(CC) $(CFLAGS) System.c -o $(OUTDIR)System.o
+#
+# $(OUTDIR)BinaryMap.o : BinaryMap.c BinaryMap.h
+# 	$(CC) $(CFLAGS) BinaryMap.c -o $(OUTDIR)BinaryMap.o
+#
+# $(OUTDIR)Level1.o : Level1.c Level1.h BinaryMap.h GameStateList.h
+# 	$(CC) $(CFLAGS) Level1.c -o $(OUTDIR)Level1.o
+#
+# $(OUTDIR)Level2.o : Level2.c Level2.h BinaryMap.h GameStateList.h
+# 	$(CC) $(CFLAGS) Level2.c -o $(OUTDIR)Level2.o
+#
+# $(OUTDIR)Level3.o : Level3.c Level3.h BinaryMap.h GameStateList.h
+# 	$(CC) $(CFLAGS) Level3.c -o $(OUTDIR)Level3.o
+#
+# clean :
+# 	$(ERASE) $(EXE) $(OBJECTS)
+#
+
 # Macros ========================================
 
+CFLAGS=
+OUTDIR=bin/
+OBJECTS=Main.c GameStateManager.c Input.c System.c BinaryMap.c Level1.c Level2.c Level3.c
 CC=gcc
-CFLAGS=-O -ansi -pedantic
 ERASE=rm
-OBJECTS=Main.o GameStateManager.o Input.o System.o BinaryMap.o Level1.o Level2.o Level3.o
-EXE=driver.exe
-
 VALGRIND_OPTIONS=-q --leak-check=full --show-reachable=yes --trace-children=yes --tool=memcheck
+
+EXE=game.exe
 # Targets ========================================
 
-$(EXE) : $(OBJECTS)
-	$(CC) -o $(EXE) $(OBJECTS)
-
-Main.o : Main.c
-	$(CC) -o Main.o $(CFLAGS) Main.c
-
-GameStateManager.o : GameStateManager.c
-	$(CC) -o GameStateManager.o $(CFLAGS) GameStateManager.c
-
-Input.o : Input.c
-	$(CC) -o Input.o $(CFLAGS) Input.c
-
-System.o : System.c
-	$(CC) -o System.o $(CFLAGS) System.c
-
-BinaryMap.o : BinaryMap.c
-	$(CC) -o BinaryMap.o $(CFLAGS) BinaryMap.c
-
-Level1.o : Level1.c
-	$(CC) -o Level1.o $(CFLAGS) Level1.c
-
-Level2.o : Level2.c
-	$(CC) -o Level2.o $(CFLAGS) Level2.c
-
-Level3.o : Level3.c
-	$(CC) -o Level3.o $(CFLAGS) Level3.c
+all :
+	$(CC) $(OBJECTS) $(CFLAGS) -o $(OUTDIR)$(EXE)
 
 clean :
-	$(ERASE) $(EXE) $(OBJECTS)
+	$(ERASE) $(OUTDIR)$(EXE)

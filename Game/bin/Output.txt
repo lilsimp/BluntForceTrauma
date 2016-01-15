@@ -1,0 +1,86 @@
+System:Initialize
+GSM:Initialize
+GSM:Update
+Level1:Load
+Level1:Initialize
+Input:Handle
+
+
+
+Level1:Update
+Cell value (1, 1) = 1
+
+
+
+Level1:Draw
+2.730000 got snapped to: 2.500000
+Flag for 3.4f, 1.7f, 1.0f, 1.0f is: 1     //You should get 1
+Input:Handle
+
+
+
+Level1:Update
+Cell value (2, 1) = 1
+
+
+
+Level1:Draw
+3.730000 got snapped to: 3.500000
+Flag for 1.7f, 2.2f, 1.0f, 1.0f is: 11     //You should get 11
+Input:Handle
+
+
+
+Level1:Update
+Cell value (3, 1) = 1
+
+
+
+Level1:Draw
+4.730000 got snapped to: 4.500000
+Flag for 1.2f, 3.8f, 1.0f, 1.0f is: 15     //You should get 15
+
+
+
+Level1:Free
+Level1:Unload
+GSM:Update
+Level2:Load
+Level2:Initialize
+Input:Handle
+Level2:Update
+Level2:Draw
+Input:Handle
+Level2:Update
+Level2:Draw
+Level2:Free
+Level2:Initialize
+Input:Handle
+Level2:Update
+Level2:Draw
+Input:Handle
+Level2:Update
+Level2:Draw
+Level2:Free
+Level2:Unload
+GSM:Update
+Level3:Load
+Level3:Initialize
+Input:Handle
+Level3:Update
+Level3:Draw
+Input:Handle
+Level3:Update
+Level3:Draw
+Input:Handle
+Level3:Update
+Level3:Draw
+Input:Handle
+Level3:Update
+Level3:Draw
+Input:Handle
+Level3:Update
+Level3:Draw
+Level3:Free
+Level3:Unload
+System:Exit
