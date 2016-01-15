@@ -1,1 +1,10 @@
-hmmm
+Elemental Enemies
+Rock Biengs (Earth)
+	- Boss -> Tree
+Tornado Biengs (Wind)
+	- Boss -> Cloud
+Fire Biengs (Fire)
+	- Boss -> Large Fire Elemental
+Water Biengs (Water)
+	- Boss -> Large Water Elemental
+
