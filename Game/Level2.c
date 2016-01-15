@@ -71,7 +71,7 @@ void Level2_Update(void) {
 	if (!(--current_health)) {
 		GSM_NEXT = RESTART;
 		if (!(--current_lives))
-			GSM_NEXT = QUIT;
+			GSM_NEXT = LEVEL_3;
 	}
 
 	fprintf(output, "Level2:Update\n");
