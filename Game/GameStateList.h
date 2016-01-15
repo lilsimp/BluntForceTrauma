@@ -16,6 +16,7 @@ History
 enum Game_States {
 	LEVEL_1,
 	LEVEL_2,
+	LEVEL_3,
 	  /* Keep this one last. Used to keep track of the number of levels */
 	LEVEL_NUM,
 

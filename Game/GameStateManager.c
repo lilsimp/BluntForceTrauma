@@ -17,8 +17,9 @@ History
 #include "GameStateList.h"
 #include "Level1.h"
 #include "Level2.h"
-#include "Level.h"
+#include "Level3.h"
 #include "Input.h"
+#include "Level.h"
 
 #define SET_ALL_LEVELS(NUM) \
 	ALL_LEVELS[NUM - 1].pLoad   = Level##NUM##_Load; \
@@ -37,7 +38,6 @@ static unsigned int GSM_PREVIOUS;
        unsigned int GSM_NEXT;			  /* Extern this wherever it needs to be changed, such as level files. */
 
 static void SetAllLevels(void) {
-	int i;
 	ALL_LEVELS = (Level *)malloc(sizeof(Level) * LEVEL_NUM);
 	SET_ALL_LEVELS(1);
 	SET_ALL_LEVELS(2);
