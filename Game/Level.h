@@ -1,9 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include "Level1.h"
-#include "Level2.h"
-
 typedef void (*fp)(void);
 
 typedef struct Level{

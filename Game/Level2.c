@@ -12,13 +12,10 @@ History
 
 #include "Level2.h"
 #include "GameStateList.h"
-#include "BinaryMap.h"
 #include <stdio.h> /* fopen_s, fscanf_s, fprintf, fclose */
 
 extern FILE* output;
 extern unsigned int GSM_NEXT;
-
-
 
 static int Level2_Health;
 static int Level2_Lives;

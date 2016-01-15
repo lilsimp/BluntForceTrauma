@@ -10,6 +10,9 @@ History
 © Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
 ----------------------------------------------------------------------------*/
 
+#ifndef BINARY_MAP_H
+#define BINARY_MAP_H
+
 #define	COLLISION_LEFT		0x00000001	//0001
 #define	COLLISION_RIGHT		0x00000002	//0010
 #define	COLLISION_TOP	  	0x00000004	//0100
@@ -114,3 +117,5 @@ int ImportMapDataFromFile(char *FileName);
 void FreeMapData(void);
 
 void PrintRetrievedInformation();
+
+#endif
