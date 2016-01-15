@@ -19,6 +19,14 @@ History
 #include "Level2.h"
 #include "Level.h"
 #include "Input.h"
+#define SET_ALL_LEVELS(NUM) \
+	ALL_LEVELS[NUM - 1].pLoad   = Level##NUM_Load; \
+  ALL_LEVELS[NUM - 1].pInit   = Level##NUM_Initialize; \
+  ALL_LEVELS[NUM - 1].pUpdate = Level##NUM_Update; \
+  ALL_LEVELS[NUM - 1].pDraw   = Level##NUM_Draw; \
+  ALL_LEVELS[NUM - 1].pFree   = Level##NUM_Free; \
+  ALL_LEVELS[NUM - 1].pUnload = Level##NUM_Unload
+
 
 extern FILE* output;
 static Level* ALL_LEVELS;
@@ -28,21 +36,10 @@ static unsigned int GSM_PREVIOUS;
        unsigned int GSM_NEXT;			  /* Extern this wherever it needs to be changed, such as level files. */
 
 static void SetAllLevels(void) {
+	int i;
 	ALL_LEVELS = (Level *)malloc(sizeof(Level) * LEVEL_NUM);
-
-	ALL_LEVELS[0].pLoad   = Level1_Load;
-  ALL_LEVELS[0].pInit   = Level1_Initialize;
-  ALL_LEVELS[0].pUpdate = Level1_Update;
-  ALL_LEVELS[0].pDraw   = Level1_Draw;
-  ALL_LEVELS[0].pFree   = Level1_Free;
-  ALL_LEVELS[0].pUnload = Level1_Unload;
-
-  ALL_LEVELS[1].pLoad   = Level2_Load;
-  ALL_LEVELS[1].pInit   = Level2_Initialize;
-  ALL_LEVELS[1].pUpdate = Level2_Update;
-  ALL_LEVELS[1].pDraw   = Level2_Draw;
-  ALL_LEVELS[1].pFree   = Level2_Free;
-  ALL_LEVELS[1].pUnload = Level2_Unload;
+	for(i = 1; i <= LEVEL_NUM; ++i)
+		SET_ALL_LEVELS(i);
 }
 
 /***************************************************************************/
