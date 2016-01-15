@@ -34,9 +34,13 @@ void Level3_Load(void) {
 	fscanf(fp, "%d", &Level3_Health);
 	fclose(fp);
 
+	printf("Level 3:\n");
+
 	ImportMapDataFromFile("Inputs/Level3_Map.txt");
 
 	PrintRetrievedInformation();
+
+	printf("\n\n");
 
 	fprintf(output, "Level3:Load\n");
 }

@@ -2,37 +2,39 @@
 
 CC=gcc
 CFLAGS=-O -ansi -pedantic
-OUTDIR=gnu/
 ERASE=rm
-OBJECTS=$(OUTDIR)Main.o $(OUTDIR)GameStateManager.o $(OUTDIR)Input.o $(OUTDIR)System.o $(OUTDIR)BinaryMap.o $(OUTDIR)Level1.o $(OUTDIR)Level2.o
+OBJECTS=Main.o GameStateManager.o Input.o System.o BinaryMap.o Level1.o Level2.o Level3.o
 EXE=driver.exe
 
 VALGRIND_OPTIONS=-q --leak-check=full --show-reachable=yes --trace-children=yes --tool=memcheck
 # Targets ========================================
 
-$(OUTDIR)$(EXE) : $(OBJECTS)
-	$(CC) -o $(OUTDIR)$(EXE) $(OBJECTS)
+$(EXE) : $(OBJECTS)
+	$(CC) -o $(EXE) $(OBJECTS)
 
-$(OUTDIR)Main.o : Main.c
-	$(CC) -o $(OUTDIR)Main.o $(CFLAGS) Main.c
+Main.o : Main.c
+	$(CC) -o Main.o $(CFLAGS) Main.c
 
-$(OUTDIR)GameStateManager.o : GameStateManager.c
-	$(CC) -o $(OUTDIR)GameStateManager.o $(CFLAGS) GameStateManager.c
+GameStateManager.o : GameStateManager.c
+	$(CC) -o GameStateManager.o $(CFLAGS) GameStateManager.c
 
-$(OUTDIR)Input.o : Input.c
-	$(CC) -o $(OUTDIR)Input.o $(CFLAGS) Input.c
+Input.o : Input.c
+	$(CC) -o Input.o $(CFLAGS) Input.c
 
-$(OUTDIR)System.o : System.c
-	$(CC) -o $(OUTDIR)System.o $(CFLAGS) System.c
+System.o : System.c
+	$(CC) -o System.o $(CFLAGS) System.c
 
-$(OUTDIR)BinaryMap.o : BinaryMap.c
-	$(CC) -o $(OUTDIR)BinaryMap.o $(CFLAGS) BinaryMap.c
+BinaryMap.o : BinaryMap.c
+	$(CC) -o BinaryMap.o $(CFLAGS) BinaryMap.c
 
-$(OUTDIR)Level1.o : Level1.c
-	$(CC) -o $(OUTDIR)Level1.o $(CFLAGS) Level1.c
+Level1.o : Level1.c
+	$(CC) -o Level1.o $(CFLAGS) Level1.c
 
-$(OUTDIR)Level2.o : Level2.c
-	$(CC) -o $(OUTDIR)Level2.o $(CFLAGS) Level2.c
+Level2.o : Level2.c
+	$(CC) -o Level2.o $(CFLAGS) Level2.c
+
+Level3.o : Level3.c
+	$(CC) -o Level3.o $(CFLAGS) Level3.c
 
 clean :
-	$(ERASE) $(OUTDIR)$(EXE) $(OBJECTS)
+	$(ERASE) $(EXE) $(OBJECTS)
