@@ -1,0 +1,49 @@
+
+class Controller : ZilchComponent
+{
+    
+    [Property]
+    var LeftInput : Keys = Keys.Left;
+    
+    [Property]
+    var RightInput : Keys = Keys.Right;
+    
+    [Property]
+    var SpaceInput : Keys = Keys.Up;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+                
+        //Player Movement
+        var movement = Real3(0,0,0);
+        if(Zero.Keyboard.KeyIsDown(this.LeftInput))
+        {
+            movement += Real3(-10, 0,0);
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(this.RightInput))
+        {
+            movement += Real3(10,0,0);
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Down))
+        {
+            movement += Real3(0,-8,0);
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.SpaceInput))
+        {
+            movement += Real3(0,10,0);
+            
+            this.LevelSettings.Particles.ThrusterParticle(Real4(0,0,0,0), 5, this.Owner.Transform.Translation, 1);
+        }
+        
+
+        this.Owner.RigidBody.Velocity = movement;
+    }
+}

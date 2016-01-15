@@ -19,13 +19,14 @@ History
 #include "Level2.h"
 #include "Level.h"
 #include "Input.h"
+
 #define SET_ALL_LEVELS(NUM) \
-	ALL_LEVELS[NUM - 1].pLoad   = Level##NUM_Load; \
-  ALL_LEVELS[NUM - 1].pInit   = Level##NUM_Initialize; \
-  ALL_LEVELS[NUM - 1].pUpdate = Level##NUM_Update; \
-  ALL_LEVELS[NUM - 1].pDraw   = Level##NUM_Draw; \
-  ALL_LEVELS[NUM - 1].pFree   = Level##NUM_Free; \
-  ALL_LEVELS[NUM - 1].pUnload = Level##NUM_Unload
+	ALL_LEVELS[NUM - 1].pLoad   = Level##NUM##_Load; \
+  ALL_LEVELS[NUM - 1].pInit   = Level##NUM##_Initialize; \
+  ALL_LEVELS[NUM - 1].pUpdate = Level##NUM##_Update; \
+  ALL_LEVELS[NUM - 1].pDraw   = Level##NUM##_Draw; \
+  ALL_LEVELS[NUM - 1].pFree   = Level##NUM##_Free; \
+  ALL_LEVELS[NUM - 1].pUnload = Level##NUM##_Unload
 
 
 extern FILE* output;
@@ -38,8 +39,9 @@ static unsigned int GSM_PREVIOUS;
 static void SetAllLevels(void) {
 	int i;
 	ALL_LEVELS = (Level *)malloc(sizeof(Level) * LEVEL_NUM);
-	for(i = 1; i <= LEVEL_NUM; ++i)
-		SET_ALL_LEVELS(i);
+	SET_ALL_LEVELS(1);
+	SET_ALL_LEVELS(2);
+	SET_ALL_LEVELS(3);
 }
 
 /***************************************************************************/

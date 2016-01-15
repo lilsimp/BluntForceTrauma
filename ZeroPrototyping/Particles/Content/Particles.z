@@ -1,0 +1,79 @@
+/*------------------------------------------------------------------/
+File Name: Particles
+Author : Jesse Shapiro
+Creation Date: 1/14/2016
+Purpouse: Prototype Particle systems in zero to be implemented in 
+alpha engine for GAM 150.
+-------------------------------------------------------------------*/
+
+class Particles : ZilchComponent    
+{
+    var ThrustParticle : Archetype = Archetype.Find("ThrustParticle");
+    var RingParticle : Archetype = Archetype.Find("RingParticle");
+    var RandomGenerator : Random = Random();
+    
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    
+    function ThrusterParticle(particleColor : Real4, amount : Integer, location : Real3, speed : Real)
+    {
+        var spawnLocation = location;
+        var velocity = Real3(0, -speed, 0);
+        var i = 0;
+        
+        for(i = 0; i < amount; i+=1)
+        {
+            var createdParticle = this.Space.CreateAtPosition(this.ThrustParticle, spawnLocation);
+            velocity.X = this.RandomGenerator.Range(-2,2);
+            createdParticle.RigidBody.Velocity = velocity;
+        }
+        
+    }
+    
+    function Convert(degrees : Real) : Real
+    {
+        var converted  = degrees * 3.14159365 / 180;
+        return converted;
+    }
+    
+    
+    function RingParticles(particleColor : Real4, amount : Integer, location : Real3, speed : Real)
+    {
+        var direction : Real3 = Real3(0,0,0);
+        var i = 0;
+        var j : Real = 0;
+        var dude : Real = 0;
+        
+        dude = 360 / amount;
+        
+        for(i = 0; i < amount; i+=1)
+        {
+                var createdParticle = this.Space.CreateAtPosition(this.RingParticle, location);
+                
+                direction.X = Math.Cos(this.Convert(j)); //1   -1   
+                direction.Y = Math.Sin(this.Convert(j)); //0   0   
+                createdParticle.RigidBody.Velocity = direction * speed;
+                
+                j += dude;
+        }
+    }
+    
+    function DeathParticles(particleColor : Real4, amount : Integer, location : Real3, speed : Real, velocity : Real3)
+    {
+        var direction : Real3 = Real3(0,0,0);
+        var i = 0;
+        
+        for(i = 0; i < amount; i += 1)
+        {
+                var createdParticle = this.Space.CreateAtPosition(this.RingParticle, location);
+            
+                direction.X = velocity.X + this.RandomGenerator.Range(-1,1);
+                direction.Y = velocity.Y + this.RandomGenerator.Range(-1,1);
+                createdParticle.RigidBody.Velocity = direction * speed;
+        }
+        
+    }
+}

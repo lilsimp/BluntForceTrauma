@@ -1,0 +1,47 @@
+class DeleteParticles : ZilchComponent
+{
+    var Timer : Real = 0;
+    var DeleteT : Real = 0.1;
+    var DeleteR : Real = 0.3;
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        if(this.Owner.ArchetypeName == "ThrustParticle")
+            if(event.OtherObject.Collider.CollisionGroup.Name == "DefaultGroup")
+            {
+                this.Owner.Destroy();
+            }
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Timer += event.Dt;
+        
+        if(this.Owner.ArchetypeName == "ThrustParticle")
+        {
+            if (this.Timer > this.DeleteT)
+            {
+                this.Owner.Destroy();
+                this.Timer = 0;
+            }
+        }
+        
+         if(this.Owner.ArchetypeName == "RingParticle")
+        {
+            if (this.Timer > this.DeleteR)
+            {
+                this.Owner.Destroy();
+                this.Timer = 0;
+            }
+        }
+        
+        
+    }
+}

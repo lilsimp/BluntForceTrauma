@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Particles",
+	uint64 LibraryId = 566e332b2cbb817f,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

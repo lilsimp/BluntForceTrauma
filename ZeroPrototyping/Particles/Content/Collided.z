@@ -1,0 +1,26 @@
+class Collided : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        // Get the object we collided with:
+        var otherObject = event.OtherObject;
+
+        // If we collided with the block,
+        if (otherObject.Name == "Box")
+        {
+            this.Space.LevelSettings.Particles.RingParticles(Real4(0,0,0,0), 20, this.Owner.Transform.Translation, 8);
+        }
+        
+        if (otherObject.Name == "Spike")
+        {
+            this.Owner.Destroy();
+            this.Space.LevelSettings.Particles.DeathParticles(Real4(0,0,0,0), 5, this.Owner.Transform.Translation, 8, this.Owner.RigidBody.Velocity);
+        }
+    }
+
+}
