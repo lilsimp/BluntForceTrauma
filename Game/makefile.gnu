@@ -36,6 +36,7 @@ OUTDIR=bin/
 OBJECTS=Main.c GameStateManager.c Input.c System.c BinaryMap.c Level1.c Level2.c Level3.c
 CC=gcc
 ERASE=rm
+
 VALGRIND_OPTIONS=-q --leak-check=full --show-reachable=yes --trace-children=yes --tool=memcheck
 
 EXE=game.exe
@@ -43,6 +44,9 @@ EXE=game.exe
 
 all :
 	$(CC) $(OBJECTS) $(CFLAGS) -o $(OUTDIR)$(EXE)
+
+valgrind :
+	cd $(OUTDIR) valgrind $(VALGRIND_OPTIONS) ./$(EXE) --line-numbers > /dev/null
 
 clean :
 	$(ERASE) $(OUTDIR)$(EXE)

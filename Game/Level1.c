@@ -34,7 +34,7 @@ static int current_health;
 /***************************************************************************/
 void Level1_Load(void) {
 	FILE* fp = fopen("Inputs/Level1_Health.txt", "rt");
-	fscanf(fp, "%d", &Level1_Health);
+	fscanf(fp, "%i", &Level1_Health);
 	fclose(fp);
 
 	printf("Level 1:\n");
