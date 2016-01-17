@@ -118,7 +118,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 17.8868561,
+			float Size = 100,
 		},
 		EditorCameraController = 
 		{
@@ -151,7 +151,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [0, 0, 40],
-			Vec3 Scale = [1, 1, 1],
+			Vec3 Scale = [0.514587998, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Camera = 
@@ -159,10 +159,10 @@ Level =
 			ProjectionMode ProjectionMode = Orthographic,
 			Facing Facing = NegativeZ,
 			CameraTransparentSort TransparentSort = InheritFromSpace,
-			float FieldOfView = 45,
+			float FieldOfView = 37,
 			float NearPlane = 0.5,
 			float FarPlane = 200,
-			float Size = 20,
+			float Size = 40.0313187,
 		},
 		SoundListener = 
 		{
@@ -182,7 +182,7 @@ Level =
 		Transform = 
 		{
 			Vec3 Translation = [0, 0, 0],
-			Vec3 Scale = [30, 1, 1],
+			Vec3 Scale = [1000000, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
 		Sprite = 
@@ -275,6 +275,8 @@ Level =
 			Enum LeftInput = Left,
 			Enum RightInput = Right,
 			Enum SpaceInput = Up,
+			float MaxSpeed = 8,
+			float Acceleration = 1,
 		},
 		Collided = 
 		{
@@ -292,7 +294,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.87790561, 1.48944306, 0],
+			Vec3 Translation = [1.87790561, 5.28738976, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -337,7 +339,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [11.114562, 1.07403755, 0],
+			Vec3 Translation = [11.114562, 4.54951668, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -368,6 +370,10 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		FireParticle = 
+		{
+			float Amount = 10,
 		},
 	},
 	Cog = 
@@ -413,6 +419,10 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+		FireParticle = 
+		{
+			float Amount = 10,
 		},
 	},
 	Cog = 
@@ -472,7 +482,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-3.43868732, 1.57948565, 0],
+			Vec3 Translation = [-3.43868732, 5.66407013, 0],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [0, 0, 0, 1],
 		},
@@ -503,6 +513,24 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
+		},
+	},
+	ArchetypeInstance = 
+	{
+		string Name = "56cb1f192701c099:FireParticle",
+		LinkId = 
+		{
+			uint Id = 11,
+		},
+		Transform = 
+		{
+			Vec3 Translation = [-1.05406988, 11.2425947, 0],
+			Vec3 Scale = [0.100000001, 0.100000001, 1],
+			Quat Rotation = [0, 0, 0, 1],
+		},
+		Named = 
+		{
+			string Name = "Sprite",
 		},
 	},
 },

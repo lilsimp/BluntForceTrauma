@@ -3,7 +3,7 @@ class DeleteParticles : ZilchComponent
     var Timer : Real = 0;
     var DeleteT : Real = 0.1;
     var DeleteR : Real = 0.3;
-    
+    var RandomGenerator : Random = Random();
     
     function Initialize(init : CogInitializer)
     {
@@ -36,6 +36,16 @@ class DeleteParticles : ZilchComponent
          if(this.Owner.ArchetypeName == "RingParticle")
         {
             if (this.Timer > this.DeleteR)
+            {
+                this.Owner.Destroy();
+                this.Timer = 0;
+            }
+        }
+        
+        if(this.Owner.ArchetypeName == "FireParticle")
+        {
+            var deleteF = this.RandomGenerator.Range(0.1, 0.7);
+            if (this.Timer > deleteF)
             {
                 this.Owner.Destroy();
                 this.Timer = 0;

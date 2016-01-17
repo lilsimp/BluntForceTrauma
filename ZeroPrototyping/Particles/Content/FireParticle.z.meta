@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "FireParticle",
+		uint64 ResourceId = 56613352ab97c7e3,
+	},
+},

@@ -11,6 +11,19 @@ class Controller : ZilchComponent
     [Property]
     var SpaceInput : Keys = Keys.Up;
     
+    [Property]
+    var MaxSpeed : Real = 8;
+    var MaxVelocity : Real3 = Real3(8, 0, 0);
+    
+    [Property]
+    var Acceleration : Real = 1;
+    
+    [Property]
+    var JumpAcceleration : Real = 4;
+    
+    var JumpTimer : Real = 0;
+    var JumpCancel : Real = 0;
+        
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -18,32 +31,41 @@ class Controller : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-                
-        //Player Movement
-        var movement = Real3(0,0,0);
+        var vf = Real3(0,0,0);
+        var v = this.Owner.RigidBody.Velocity;
+        
         if(Zero.Keyboard.KeyIsDown(this.LeftInput))
         {
-            movement += Real3(-10, 0,0);
+            vf.X -= this.Acceleration;
         }
         
         if(Zero.Keyboard.KeyIsDown(this.RightInput))
         {
-            movement += Real3(10,0,0);
+            vf.X += this.Acceleration;
         }
-        
-        if(Zero.Keyboard.KeyIsDown(Keys.Down))
-        {
-            movement += Real3(0,-8,0);
-        }
+
         
         if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.SpaceInput))
         {
-            movement += Real3(0,10,0);
-            
-            this.LevelSettings.Particles.ThrusterParticle(Real4(0,0,0,0), 5, this.Owner.Transform.Translation, 1);
+            vf.Y += this.JumpAcceleration;
         }
         
 
-        this.Owner.RigidBody.Velocity = movement;
+        
+        this.Owner.RigidBody.Velocity += vf;
+        
+        this.MaxVelocity.Y = this.Owner.RigidBody.Velocity.Y;
+        
+        if(this.Owner.RigidBody.Velocity.X >= this.MaxSpeed)
+        {
+            this.Owner.RigidBody.Velocity = this.MaxVelocity;
+        }
+        
+        if(this.Owner.RigidBody.Velocity.X <= -this.MaxSpeed)
+        {
+            this.Owner.RigidBody.Velocity = -this.MaxVelocity;
+        }
+        
+        Console.WriteLine("`this.Owner.RigidBody.Velocity.X`");
     }
 }

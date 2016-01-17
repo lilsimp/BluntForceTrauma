@@ -1,0 +1,34 @@
+class FireParticle : ZilchComponent
+{
+    [Property]
+    var Amount : Real = 10;
+    
+    var FireParticle : Archetype = Archetype.Find("FireParticle");
+    var RandomGenerator : Random = Random();
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var i = 0;
+        
+        var sScalex = 0.5 * this.Owner.Transform.Scale.X;
+        var sScaley = 0.5 * this.Owner.Transform.Scale.Y;
+        
+       for(i = 0; i < this.Amount; i+=1)
+        {
+            var location : Real3 = Real3(0,0,0);
+            location.Y = this.Owner.Transform.Translation.Y + (sScaley);
+            location.X = this.RandomGenerator.Range((this.Owner.Transform.Translation.X - sScalex), (this.Owner.Transform.Translation.X + sScalex));
+            location.Z = 1;
+            var createdParticle = this.Space.CreateAtPosition(this.FireParticle, location);
+            createdParticle.RigidBody.Velocity = Real3(0,1,0) * 5;   
+            
+        }
+        
+    }
+}
