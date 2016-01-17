@@ -22,13 +22,11 @@ static unsigned int BINARY_MAP_HEIGHT;
 
 /*This will contain all the data of the map, which will be retireved from a file
 when the "ImportMapDataFromFile" function is called*/
-static int** MapData;
 
 /*This will contain the collision dataof the binary map. It will be filled in the
 "ImportMapDataFromFile" after filling "MapData". Basically, if an array element
 in MapData is 1, it represents a collision cell, any other value is a non-collision
 cell*/
-static int** BinaryCollisionArray;
 
 static int** make_grid(int** grid) {
 	unsigned int i;
@@ -49,14 +47,14 @@ static void free_grid(int** grid) {
 }
 
 
-int GetCellValue(unsigned int X, unsigned int Y) {
+int GetCellValue(unsigned int X, unsigned int Y, int** BinaryCollisionArray) {
   if(X >= BINARY_MAP_WIDTH || Y >= BINARY_MAP_HEIGHT)
 		return 0;
 
   return BinaryCollisionArray[X][Y];
 }
 
-int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float scaleY) {
+int CheckInstanceBinaryMapCollision(int** BinaryCollisionArray, float PosX, float PosY, float scaleX, float scaleY) {
 	int FLAG = 0;
 	float x1, x2, y1, y2;
 
@@ -66,7 +64,7 @@ int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float 
 	x2 = PosX - scaleX/2;
 	y2 = PosX - scaleY/4;
 
-	if(GetCellValue(x1, y1) || GetCellValue(x2, y2))
+	if(GetCellValue(x1, y1) || GetCellValue(x2, y2, BinaryCollisionArray))
 		FLAG |= COLLISION_LEFT;
 
 	x1 = PosX + scaleX/2;
@@ -75,7 +73,7 @@ int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float 
 	x2 = PosX + scaleX/2;
 	y2 = PosX - scaleY/4;
 
-	if(GetCellValue(x1, y1) || GetCellValue(x2, y2))
+	if(GetCellValue(x1, y1, BinaryCollisionArray) || GetCellValue(x2, y2, BinaryCollisionArray))
 		FLAG |= COLLISION_RIGHT;
 
 	x1 = PosX + scaleX/4;
@@ -84,7 +82,7 @@ int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float 
 	x2 = PosX - scaleX/4;
 	y2 = PosX + scaleY/2;
 
-	if(GetCellValue(x1, y1) || GetCellValue(x2, y2))
+	if(GetCellValue(x1, y1, BinaryCollisionArray) || GetCellValue(x2, y2, BinaryCollisionArray))
 		FLAG |= COLLISION_TOP;
 
 	x1 = PosX + scaleX/4;
@@ -93,7 +91,7 @@ int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float 
 	x2 = PosX - scaleX/4;
 	y2 = PosX - scaleY/2;
 
-	if(GetCellValue(x1, y1) || GetCellValue(x2, y2))
+	if(GetCellValue(x1, y1, BinaryCollisionArray) || GetCellValue(x2, y2, BinaryCollisionArray))
 		FLAG |= COLLISION_BOTTOM;
 
 	return FLAG;
@@ -103,20 +101,20 @@ void SnapToCell(float *Coordinate) {
 	*Coordinate = (int)*Coordinate + 0.5f;
 }
 
-int ImportMapDataFromFile(char *FileName) {
+int ImportMapDataFromFile(char *FileName, MapData* map) {
 	int i, j, value;
 	FILE *fp = fopen(FileName, "rt");
-	fscanf(fp, "Width %u\n", &BINARY_MAP_WIDTH);
-	fscanf(fp, "Height %u\n", &BINARY_MAP_HEIGHT);
+	fscanf(fp, "Width %u\n", &map->width);
+	fscanf(fp, "Height %u\n", &map->height);
 
-	MapData = make_grid(MapData);
-	BinaryCollisionArray = make_grid(BinaryCollisionArray);
+	map->Map = make_grid(map->Map);
+	map->BinaryCollisionArray = make_grid(map->BinaryCollisionArray);
 
-	for(j = BINARY_MAP_HEIGHT - 1; j >= 0; --j)
-		for(i = 0; i < BINARY_MAP_WIDTH; ++i) {
+	for(j = map->height - 1; j >= 0; --j)
+		for(i = 0; i < map->width; ++i) {
 			fscanf(fp, "%i ", &value);
-			MapData[i][j] = value;
-			BinaryCollisionArray[i][j] = ((value == 1) ? 1 : 0);
+			map->Map[i][j] = value;
+			map->BinaryCollisionArray[i][j] = ((value == 1) ? 1 : 0);
 		}
 
 	fclose(fp);
@@ -124,29 +122,29 @@ int ImportMapDataFromFile(char *FileName) {
 	return 1;
 }
 
-void FreeMapData(void) {
-	free_grid(MapData);
-	free_grid(BinaryCollisionArray);
+void FreeMapData(MapData* map) {
+	free_grid(map->Map);
+	free_grid(map->BinaryCollisionArray);
 }
 
-void PrintRetrievedInformation(void) {
+void PrintRetrievedInformation(MapData* map) {
 	int i, j;
 
-	printf("Width: %i\n", BINARY_MAP_WIDTH);
-	printf("Height: %i\n", BINARY_MAP_HEIGHT);
+	printf("Width: %i\n", map->width);
+	printf("Height: %i\n", map->height);
 
 	printf("Map Data:\n");
-	for(j = BINARY_MAP_HEIGHT - 1; j >= 0; --j)	{
-		for(i = 0; i < BINARY_MAP_WIDTH; ++i)
-			printf("%i ", MapData[i][j]);
+	for(j = map->height - 1; j >= 0; --j)	{
+		for(i = 0; i < map->width; ++i)
+			printf("%i ", map->Map[i][j]);
 
 		printf("\n");
 	}
 
 	printf("\n\nBinary Collision Data:\n");
-	for(j = BINARY_MAP_HEIGHT - 1; j >= 0; --j) {
-		for(i = 0; i < BINARY_MAP_WIDTH; ++i)
-			printf("%i ", BinaryCollisionArray[i][j]);
+	for(j = map->height - 1; j >= 0; --j) {
+		for(i = 0; i < map->width; ++i)
+			printf("%i ", map->BinaryCollisionArray[i][j]);
 
 		printf("\n");
 	}

@@ -13,25 +13,22 @@ History
 #ifndef BINARY_MAP_H
 #define BINARY_MAP_H
 
+//Collision flags
 #define	COLLISION_LEFT		0x00000001	//0001
 #define	COLLISION_RIGHT		0x00000002	//0010
-#define	COLLISION_TOP	  	0x00000004	//0100
+#define	COLLISION_TOP			0x00000004	//0100
 #define	COLLISION_BOTTOM	0x00000008	//1000
 
-
-enum TYPE_OBJECT {
-	TYPE_OBJECT_EMPTY,		 //0
-	TYPE_OBJECT_COLLISION, //1
-	TYPE_OBJECT_HERO,			 //2
-	TYPE_OBJECT_ENEMY1,		 //3
-	TYPE_OBJECT_COIN			 //4
-};
-
+typedef struct MapData {
+	int width, height;
+	int** Map;
+	int** BinaryCollisionArray;
+}MapData;
 
 /*This function retrieves the value of the element (X;Y) in BinaryCollisionArray.
 Before retrieving the value, it should check that the supplied X and Y values
 are not out of bounds (in that case return 0)*/
-int GetCellValue(unsigned int X, unsigned int Y);
+int GetCellValue(unsigned int X, unsigned int Y, int** BinaryCollisionArray);
 
 
 /*This function creates 2 hot spots on each side of the object instance, and checks
@@ -62,7 +59,7 @@ Example: Finding the hotspots on the left side of the object instance
 	x2 = PosX - scaleX/2	To reach the left side
 	y2 = PosY - scaleY/4	To go down 1/4 of the height
 */
-int CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float scaleY);
+int CheckInstanceBinaryMapCollision(int** BinaryCollisionArray, float PosX, float PosY, float scaleX, float scaleY);
 
 
 /*This function snaps the value sent as parameter to the center of the cell.
@@ -110,12 +107,12 @@ void SnapToCell(float *Coordinate);
 	respectively.
 
 Finally, the function returns 1 if the file named "FileName" exists, otherwise it returns 0*/
-int ImportMapDataFromFile(char *FileName);
+int ImportMapDataFromFile(char *FileName, MapData* map);
 
 /*This function frees the memory that was allocated for the 2 arrays MapData
 & BinaryCollisionArray which was allocated in the "ImportMapDataFromFile" function*/
-void FreeMapData(void);
+void FreeMapData(MapData* map);
 
-void PrintRetrievedInformation();
+void PrintRetrievedInformation(MapData* map);
 
 #endif

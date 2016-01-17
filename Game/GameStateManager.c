@@ -112,4 +112,6 @@ void GSM_MainLoop(void) {
 		GSM_PREVIOUS = GSM_CURRENT;
 		GSM_CURRENT  = GSM_NEXT;
 	}
+
+	free(ALL_LEVELS);
 }
