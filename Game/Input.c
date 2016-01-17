@@ -7,10 +7,11 @@ Purpose               :       Handles the inputs for the game
 History
 -1/7/2016    :       Worked on and finished all functions.
 -1/7/2016    :       Added file header.
-© Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
+ï¿½ Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
 ----------------------------------------------------------------------------*/
 
 #include "Input.h"
+#include "AEInput.h"
 #include <stdio.h> /* fprintf */
 
 extern FILE* output;

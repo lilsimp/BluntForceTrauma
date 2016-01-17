@@ -13,6 +13,13 @@ History
 #ifndef LEVEL_1_H
 #define LEVEL_1_H
 
+#include "BinaryMap.h"
+#include "WorldSettings.h"
+#include "PlayerStats.h"
+#include "Matrix2D.h"
+#include "Math2D.h"
+#include "GameStateList.h"
+
 void Level1_Load(void);
 
 void Level1_Initialize(void);
