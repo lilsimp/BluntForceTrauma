@@ -64,7 +64,7 @@ int CheckInstanceBinaryMapCollision(int** BinaryCollisionArray, float PosX, floa
 	x2 = PosX - scaleX/2;
 	y2 = PosX - scaleY/4;
 
-	if(GetCellValue(x1, y1) || GetCellValue(x2, y2, BinaryCollisionArray))
+	if(GetCellValue(x1, y1, BinaryCollisionArray) || GetCellValue(x2, y2, BinaryCollisionArray))
 		FLAG |= COLLISION_LEFT;
 
 	x1 = PosX + scaleX/2;
@@ -103,9 +103,13 @@ void SnapToCell(float *Coordinate) {
 
 int ImportMapDataFromFile(char *FileName, MapData* map) {
 	int i, j, value;
-	FILE *fp = fopen(FileName, "rt");
+	FILE *fp ;
+	fp = fopen(FileName, "rt");
 	fscanf(fp, "Width %u\n", &map->width);
 	fscanf(fp, "Height %u\n", &map->height);
+
+	BINARY_MAP_WIDTH  = map->width;
+	BINARY_MAP_HEIGHT = map->height;
 
 	map->Map = make_grid(map->Map);
 	map->BinaryCollisionArray = make_grid(map->BinaryCollisionArray);
