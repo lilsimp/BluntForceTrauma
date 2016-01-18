@@ -11,8 +11,6 @@ History
 ----------------------------------------------------------------------------*/
 
 #include "Level1.h"
-#include "Objects.h"
-#include "AEEngine.h"
 #include <stdio.h> /* fopen_s, fscanf_s, fprintf, fclose */
 
 #define FLAG_ACTIVE      0x00000001
@@ -45,6 +43,7 @@ static GameObjInst *pPlayer;
 /* Map Information */
 static Matrix2D MapTransform;
 static MapData Level1_Map;
+static int TotalCoins;
 
 /* Current Player info */
 static int current_health;
@@ -74,13 +73,8 @@ void Level1_Load(void) {
 
   current_lives = Player_Lives;
 
-  sGameObjList     =     (GameObj *)malloc(GAME_OBJ_NUM_MAX      * sizeof(GameObj));
-  sGameObjInstList = (GameObjInst *)malloc(GAME_OBJ_INST_NUM_MAX * sizeof(GameObjInst));
-
-  /*
   AllGameObjects(sGameObjList, GAME_OBJ_NUM_MAX);
   AllGameObjectInsts(sGameObjInstList, GAME_OBJ_INST_NUM_MAX);
-  */
 
   sGameObjNum = 0;
 
@@ -125,7 +119,7 @@ void Level1_Load(void) {
   /* Creating the Player Explosion Particles */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_PLAYER_BITS;
-  make_square_object(0.5f, 0.5f, 0xFF0000FF, TYPE_OBJECT_PLAYER_BITS;
+  make_square_object(0.5f, 0.5f, 0xFF0000FF, TYPE_OBJECT_PLAYER_BITS);
   pObj->pMesh = AEGfxMeshEnd();
 
   if(!ImportMapDataFromFile("Inputs/Level1_Map.txt", &Level1_Map))
@@ -284,10 +278,10 @@ void Level1_Update(void) {
   ***********/
   pPlayer->velCurr.x = 0;
   if(AEInputCheckCurr(VK_RIGHT))
-    pPlayer->velCurr.x = MOVE_VELOCITY_Player;
+    pPlayer->velCurr.x = 10;
 
   else if(AEInputCheckCurr(VK_LEFT))
-    pPlayer->velCurr.x = -MOVE_VELOCITY_Player;
+    pPlayer->velCurr.x = -10;
 
   if(AEInputCheckCurr(VK_SPACE) && pPlayer->gridCollisionFlag & COLLISION_BOTTOM)
     pPlayer->velCurr.y = JUMP_VELOCITY;
@@ -379,7 +373,7 @@ void Level1_Update(void) {
       Velocity X = 0
     *************/
 
-    pInst->gridCollisionFlag = CheckInstanceBinaryMapCollision(pInst->posCurr.x, pInst->posCurr.y, pInst->scale, pInst->scale);
+	pInst->gridCollisionFlag = CheckInstanceBinaryMapCollision(Level1_Map.BinaryCollisionArray, pInst->posCurr.x, pInst->posCurr.y, pInst->scale, pInst->scale);
 
     if(pInst->pObject->type == TYPE_OBJECT_BOOSTER && pInst->gridCollisionFlag > 0)
       gameObjInstDestroy(pInst);
@@ -422,14 +416,14 @@ void Level1_Update(void) {
 
     if(pInst->pObject->type == TYPE_OBJECT_ENEMY1) {
       if(StaticRectToStaticRect(&pInst->posCurr, 1, 1, &pPlayer->posCurr, 1, 1)) {
-        PlayerLives--;
+        current_lives--;
 
         /* explosionParticleCreate(pPlayer->posCurr); */
 
         pPlayer->posCurr.x = Player_Initial_X + 0.5f;
         pPlayer->posCurr.y = Player_Initial_Y + 0.5f;
 
-        if(!PlayerLives)
+        if(current_lives == 0)
           GSM_NEXT = RESTART;
       }
     }
@@ -480,6 +474,12 @@ void Level1_Update(void) {
 */
 /***************************************************************************/
 void Level1_Draw(void) {
+	//Drawing the tile map (the grid)
+	int i, j;
+	Matrix2D cellTranslation, cellFinalTransformation;
+	double frameTime;
+	char strBuffer[100];
+
   /* Drawing the tile map (the grid)
   int i, j;
   Matrix2D cellTranslation, cellFinalTransformation;

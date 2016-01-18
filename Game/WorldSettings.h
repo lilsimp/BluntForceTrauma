@@ -1,4 +1,4 @@
-#ifdef WORLD_SETTINGS_H
+#ifndef WORLD_SETTINGS_H
 #define WORLD_SETTINGS_H
 
 #define GAME_OBJ_NUM_MAX			32

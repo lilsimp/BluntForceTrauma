@@ -1,7 +1,9 @@
-#ifdef OBJECTS_H
+#ifndef OBJECTS_H
 #define OBJECTS_H
 
+#include "WorldSettings.h"
 #include "AEEngine.h"
+#include "Matrix2D.h"
 
 enum TYPE_OBJECT {
 	TYPE_OBJECT_EMPTY,		   	/* 0 */

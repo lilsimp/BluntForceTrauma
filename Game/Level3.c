@@ -18,6 +18,7 @@ History
 extern FILE* output;
 extern unsigned int GSM_NEXT;
 
+static MapData Level3_Map;
 static int Level3_Health;
 static int current_health;
 
@@ -36,9 +37,9 @@ void Level3_Load(void) {
 
 	printf("Level 3:\n");
 
-	ImportMapDataFromFile("Inputs/Level3_Map.txt");
+	ImportMapDataFromFile("Inputs/Level3_Map.txt", &Level3_Map);
 
-	PrintRetrievedInformation();
+	PrintRetrievedInformation(&Level3_Map);
 
 	printf("\n\n");
 
@@ -107,7 +108,7 @@ void Level3_Free(void) {
 */
 /***************************************************************************/
 void Level3_Unload(void) {
-	FreeMapData();
+	FreeMapData(&Level3_Map);
 
 	fprintf(output, "Level3:Unload\n");
 }

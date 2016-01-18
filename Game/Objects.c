@@ -1,10 +1,24 @@
 #include "Objects.h"
 
+#define FLAG_ACTIVE      0x00000001
+
+static GameObj     *sGameObjList;
+static GameObjInst *sGameObjInstList;
+
+GameObj* AllGameObjects(GameObj* gmObj, int numObjects) {
+	gmObj = (GameObj *)malloc(numObjects * sizeof(GameObj));
+	sGameObjList = gmObj;
+	return gmObj;
+}
+GameObjInst* AllGameObjectInsts(GameObjInst* gmObjInst, int numInsts) {
+	gmObjInst = (GameObj *)malloc(numInsts * sizeof(GameObj));
+	sGameObjList = gmObjInst;
+	return gmObjInst;
+}
+
 GameObjInst* gameObjInstCreate(unsigned int type, float scale, Vector2D* pPos, Vector2D* pVel, float dir, enum STATE startState) {
 	unsigned int i;
 	Vector2D zero = { 0.0f, 0.0f };
-
-	AE_ASSERT_PARM(type < sGameObjNum);
 
 	/* loop through the object instance list to find a non-used object instance */
 	for (i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i) {
@@ -59,6 +73,7 @@ void make_square_object(float x, float y, int color) {
 
 void make_circle_object(int parts, int color) {
 	float CircleAngleStep;
+	int i;
 	AEGfxMeshStart();
 
 	/* 1st argument: X */
