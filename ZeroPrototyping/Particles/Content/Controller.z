@@ -9,17 +9,19 @@ class Controller : ZilchComponent
     var RightInput : Keys = Keys.Right;
     
     [Property]
-    var SpaceInput : Keys = Keys.Up;
+    var JumpInput : Keys = Keys.Up;
     
     [Property]
     var MaxSpeed : Real = 8;
     var MaxVelocity : Real3 = Real3(8, 0, 0);
     
     [Property]
-    var Acceleration : Real = 1;
+    var Acceleration : Real = 0.2;
     
     [Property]
     var JumpAcceleration : Real = 4;
+    [Property]
+    var MaxJumpSpeed : Real = 15;
     
     var JumpTimer : Real = 0;
     var JumpCancel : Real = 0;
@@ -32,39 +34,28 @@ class Controller : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         var vf = Real3(0,0,0);
+        var acceleration = this.Acceleration;
         var v = this.Owner.RigidBody.Velocity;
         
-        if(Zero.Keyboard.KeyIsDown(this.LeftInput))
+        if(Zero.Keyboard.KeyIsDown(this.LeftInput) && this.Owner.RigidBody.Velocity.X > -this.MaxSpeed)
         {
-            vf.X -= this.Acceleration;
+            vf.X -= acceleration;
         }
         
-        if(Zero.Keyboard.KeyIsDown(this.RightInput))
+        if(Zero.Keyboard.KeyIsDown(this.RightInput) && this.Owner.RigidBody.Velocity.X < this.MaxSpeed)
         {
-            vf.X += this.Acceleration;
-        }
-
-        
-        if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.SpaceInput))
-        {
-            vf.Y += this.JumpAcceleration;
+            vf.X += acceleration;
         }
         
-
+        if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.JumpInput))
+        {
+            if(this.Owner.RigidBody.Velocity.Y < this.MaxJumpSpeed)
+            {
+                vf.Y += this.JumpAcceleration;
+            }
+        }
         
         this.Owner.RigidBody.Velocity += vf;
-        
-        this.MaxVelocity.Y = this.Owner.RigidBody.Velocity.Y;
-        
-        if(this.Owner.RigidBody.Velocity.X >= this.MaxSpeed)
-        {
-            this.Owner.RigidBody.Velocity = this.MaxVelocity;
-        }
-        
-        if(this.Owner.RigidBody.Velocity.X <= -this.MaxSpeed)
-        {
-            this.Owner.RigidBody.Velocity = -this.MaxVelocity;
-        }
         
         Console.WriteLine("`this.Owner.RigidBody.Velocity.X`");
     }

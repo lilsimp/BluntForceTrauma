@@ -15,7 +15,7 @@ Level =
 			bool Active = true,
 			bool WakeUpOnChange = false,
 			bool LocalSpaceDirection = true,
-			float Strength = 150,
+			float Strength = 40,
 			Vec3 Direction = [0, -1, 0],
 		},
 		DragEffect = 
@@ -274,10 +274,11 @@ Level =
 		{
 			Enum LeftInput = Left,
 			Enum RightInput = Right,
-			Enum SpaceInput = Up,
+			Enum JumpInput = Up,
 			float MaxSpeed = 8,
 			float Acceleration = 1,
-			float JumpAcceleration = 4,
+			float JumpAcceleration = 1,
+			float MaxJumpSpeed = 12,
 		},
 		Collided = 
 		{
