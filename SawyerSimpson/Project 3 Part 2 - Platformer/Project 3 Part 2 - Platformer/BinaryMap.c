@@ -103,10 +103,10 @@ void SnapToCell(float *Coordinate) {
 
 int ImportMapDataFromFile(char *FileName, MapData* map) {
 	int i, j, value;
-	FILE *fp ;
-	fp = fopen(FileName, "rt");
-	fscanf(fp, "Width %u\n", &map->width);
-	fscanf(fp, "Height %u\n", &map->height);
+	FILE* fp;
+	fopen_s(&fp, FileName, "rt");
+	fscanf_s(fp, "Width %u\n", &map->width);
+	fscanf_s(fp, "Height %u\n", &map->height);
 
 	BINARY_MAP_WIDTH  = map->width;
 	BINARY_MAP_HEIGHT = map->height;
@@ -116,7 +116,7 @@ int ImportMapDataFromFile(char *FileName, MapData* map) {
 
 	for(j = map->height - 1; j >= 0; --j)
 		for(i = 0; i < map->width; ++i) {
-			fscanf(fp, "%i ", &value);
+			fscanf_s(fp, "%i ", &value);
 			map->Map[i][j] = value;
 			map->BinaryCollisionArray[i][j] = ((value == 1) ? 1 : 0);
 		}

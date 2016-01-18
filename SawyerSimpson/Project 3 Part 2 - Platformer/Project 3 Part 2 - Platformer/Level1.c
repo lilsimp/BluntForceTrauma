@@ -62,13 +62,13 @@ void Level1_Load(void) {
   float CircleAngleStep, i;
   GameObj* pObj;
   Matrix2D mapScale, mapTrans;
-
-  FILE* fp = fopen("Inputs/Level1_Health.txt", "rt");
-  fscanf(fp, "%i", &Player_Health);
+  FILE* fp;
+  fopen_s(&fp, "Inputs/Level1_Health.txt", "rt");
+  fscanf_s(fp, "%i", &Player_Health);
   fclose(fp);
 
-  fp = fopen("Inputs/Level1_Lives.txt", "r");
-  fscanf(fp, "%d", &Player_Lives);
+  fopen_s(&fp, "Inputs/Level1_Lives.txt", "r");
+  fscanf_s(fp, "%d", &Player_Lives);
   fclose(fp);
 
   current_lives = Player_Lives;

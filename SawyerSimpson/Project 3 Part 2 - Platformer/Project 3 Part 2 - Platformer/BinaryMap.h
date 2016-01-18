@@ -16,7 +16,7 @@ History
 //Collision flags
 #define	COLLISION_LEFT		0x00000001	/* 0001 */
 #define	COLLISION_RIGHT		0x00000002	/* 0010 */
-#define	COLLISION_TOP			0x00000004	/* 0100 */
+#define	COLLISION_TOP		0x00000004	/* 0100 */
 #define	COLLISION_BOTTOM	0x00000008	/* 1000 */
 
 typedef struct MapData {
