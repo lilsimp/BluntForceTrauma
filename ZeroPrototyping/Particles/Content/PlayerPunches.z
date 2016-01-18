@@ -1,0 +1,52 @@
+class PlayerPunches : ZilchComponent
+{
+    //punch destroy
+    var Timer : Real = 0.7;
+    var Punch : Cog = null;
+    [Property]
+    var MaxPunchDistance : Real = 2;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    //function spawns punches
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //spawn Punch object variables
+        var playerWorldPosition = this.Owner.Transform.WorldTranslation;
+        var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
+        var direction = mousePosition - this.Owner.Transform.WorldTranslation;
+        var playerDir = this.Owner.RigidBody.Velocity;
+        
+        direction = Math.Normalize(direction);
+        
+        
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && this.Punch == null)
+        {
+            
+           var spawnObject = Archetype.Punch;
+    
+           //vector variables
+           var velocity = Real3(1,1,1);
+           
+            //spawn punch
+            this.Punch  = this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns punches
+        }
+        
+        if (this.Punch != null)
+        {
+            
+            this.Punch.RigidBody.Velocity += direction / 3;
+            
+            
+            var punchDistance = (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y);
+            
+             
+            if ( punchDistance >= this.MaxPunchDistance)
+            {
+                    this.Punch.Destroy();
+            }
+        }
+    }
+}

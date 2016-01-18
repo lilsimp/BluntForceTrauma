@@ -1,0 +1,51 @@
+class Collided : ZilchComponent
+{
+    [Property]
+    var StartingPos : Real3 = Real3(0,0,0);
+    
+    var DeathTimer : Real = 3;
+    var Locked : Integer = 0;
+    var LockedPos : Real3 = Real3(0,0,0);
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    //function spawns punches
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(this.Locked == 1)
+        {
+            this.Owner.Transform.Translation = this.LockedPos;
+            this.DeathTimer -= event.Dt;
+        }
+        if(this.DeathTimer <= 0.0 && this.Locked == 1)
+        {
+            this.Locked = 0;
+            this.Owner.Transform.Translation = this.StartingPos;
+            this.Owner.Sprite.Visible = true;
+            this.DeathTimer = 3;
+        }
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        // Get the object we collided with:
+        var otherObject = event.OtherObject;
+
+        // If we collided with the block,
+        if (otherObject.Name == "Box")
+        {
+            this.Space.LevelSettings.Particles.RingParticles(Real4(0,0,0,0), 20, this.Owner.Transform.Translation, 8);
+        }
+        
+        if (otherObject.Name == "Spike")
+        {
+            this.Owner.Sprite.Visible = false;
+            this.Space.LevelSettings.Particles.DeathParticles(Real4(0,0,0,0), 5, this.Owner.Transform.Translation, 8, this.Owner.RigidBody.Velocity);
+            this.LockedPos = this.Owner.Transform.Translation;
+            this.Locked = 1;
+        }
+    }
+}

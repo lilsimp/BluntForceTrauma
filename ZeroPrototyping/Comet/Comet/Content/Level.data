@@ -224,6 +224,21 @@ Level =
 		},
 		PlayerPunches = 
 		{
+			float MaxPunchDistance = 2,
+		},
+		Collided = 
+		{
+			Vec3 StartingPos = [0, 0, 0],
+		},
+		PlayerController = 
+		{
+			Enum LeftInput = Left,
+			Enum RightInput = Right,
+			Enum JumpInput = Up,
+			float MaxSpeed = 8,
+			float Acceleration = 0.200000003,
+			float JumpAcceleration = 4,
+			float MaxJumpSpeed = 15,
 		},
 	},
 	Cog = 
