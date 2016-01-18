@@ -1,0 +1,40 @@
+﻿Build started 1/17/2016 4:20:32 PM.
+     1>Project "C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.lib" /MACHINE:X86 /SAFESEH Debug\BinaryMap.obj
+         Debug\GameStateManager.obj
+         Debug\Input.obj
+         Debug\Level1.obj
+         Debug\Level2.obj
+         Debug\Level3.obj
+         Debug\Main.obj
+         Debug\Math2D.obj
+         Debug\Matrix2D.obj
+         Debug\Objects.obj
+         Debug\System.obj
+         Debug\Vector2D.obj
+     1>BinaryMap.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEFrameRateControllerGetFrameTime referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxSetRenderMode referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMinX referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMaxX referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMinY referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMaxY referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxSetTransform referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxSetTintColor referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshEnd referenced in function _Level1_Load
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshDraw referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshFree referenced in function _Level1_Unload
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxTextureSet referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEInputCheckCurr referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol _EnemyStateMachine referenced in function _Level1_Update
+     1>Level1.obj : error LNK2019: unresolved external symbol _StaticCircleToStaticRect referenced in function _Level1_Update
+     1>Objects.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshStart referenced in function _make_circle_object
+     1>Objects.obj : error LNK2019: unresolved external symbol __imp__AEGfxTriAdd referenced in function _make_circle_object
+     1>MSVCRTD.lib(crtexew.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function ___tmainCRTStartup
+     1>C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.exe : fatal error LNK1120: 18 unresolved externals
+     1>Done Building Project "C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.65
