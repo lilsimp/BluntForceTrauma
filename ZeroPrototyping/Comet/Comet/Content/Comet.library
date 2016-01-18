@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Comet",
+	uint64 LibraryId = 5695771658d4d987,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},
