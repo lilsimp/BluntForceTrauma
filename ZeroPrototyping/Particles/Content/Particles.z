@@ -11,6 +11,7 @@ class Particles : ZilchComponent
     var ThrustParticle : Archetype = Archetype.Find("ThrustParticle");
     var RingParticle : Archetype = Archetype.Find("RingParticle");
     var RandomGenerator : Random = Random();
+    var ParticleCounter : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
@@ -59,6 +60,9 @@ class Particles : ZilchComponent
                 
                 j += dude;
         }
+        
+        this.ParticleCounter += 1;
+        Console.WriteLine("`this.ParticleCounter`");
     }
     
     function DeathParticles(particleColor : Real4, amount : Integer, location : Real3, speed : Real, velocity : Real3)

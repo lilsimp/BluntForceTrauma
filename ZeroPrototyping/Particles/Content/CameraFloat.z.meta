@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CameraFloat",
+		uint64 ResourceId = 56cdb139b3f927de,
+	},
+},

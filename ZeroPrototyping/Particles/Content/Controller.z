@@ -1,4 +1,3 @@
-
 class Controller : ZilchComponent
 {
     
@@ -24,7 +23,9 @@ class Controller : ZilchComponent
     var MaxJumpSpeed : Real = 15;
     
     var JumpTimer : Real = 0;
-    var JumpCancel : Real = 0;
+    var JumpCancel : Real = 1;
+    var StopJumping : Boolean = false;
+    var CanJump : Boolean = true;
         
     function Initialize(init : CogInitializer)
     {
@@ -47,16 +48,43 @@ class Controller : ZilchComponent
             vf.X += acceleration;
         }
         
-        if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.JumpInput))
+        if(this.CanJump == true)
         {
-            if(this.Owner.RigidBody.Velocity.Y < this.MaxJumpSpeed)
+            if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.JumpInput))
             {
-                vf.Y += this.JumpAcceleration;
+                this.JumpTimer += event.Dt;
+                
+                Console.WriteLine("`this.JumpTimer`");
+                
+                if(this.JumpTimer >= this.JumpCancel)
+                {
+                    this.StopJumping = true;
+                    this.JumpTimer = 0;
+                }
+                
+                if(this.StopJumping == false)
+                {
+                    if(this.Owner.RigidBody.Velocity.Y <= this.MaxJumpSpeed)
+                    {
+                        vf.Y += this.JumpAcceleration;
+                    }
+                }
+                
+            }
+            else
+            {
+                this.JumpTimer = 0;
+                this.StopJumping = false;
             }
         }
         
-        this.Owner.RigidBody.Velocity += vf;
+        if(this.Owner.RigidBody.Velocity.Y >= this.MaxJumpSpeed)
+        {
+            this.CanJump = false;
+        }
+
         
-        Console.WriteLine("`this.Owner.RigidBody.Velocity.X`");
+        
+        this.Owner.RigidBody.Velocity += vf;
     }
 }
