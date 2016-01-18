@@ -12,7 +12,7 @@ History
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
-#include <math.h>
+#include "math.h"
 
 #define PI      3.1415926535897932384626433832795
 

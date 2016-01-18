@@ -1,0 +1,3 @@
+#define JUMP_VELOCITY 11.0f
+#define MOVE_VELOCITY_HERO 4.0f
+#define MOVE_VELOCITY_ENEMY 7.5f

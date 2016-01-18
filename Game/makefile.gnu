@@ -33,8 +33,8 @@
 
 CFLAGS=
 OUTDIR=bin/
-OBJECTS=Main.c GameStateManager.c Input.c System.c BinaryMap.c Level1.c Level2.c Level3.c
-CC=gcc
+OBJECTS=Main.c GameStateManager.c Input.c System.c BinaryMap.c Objects.c Level1.c Level2.c Level3.c
+CC=i586-mingw32msvc-gcc.sh
 ERASE=rm
 
 VALGRIND_OPTIONS=-q --leak-check=full --show-reachable=yes --trace-children=yes --tool=memcheck

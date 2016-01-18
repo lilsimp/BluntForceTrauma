@@ -46,7 +46,7 @@ enum TYPE_OBJECT
 	TYPE_OBJECT_ENEMY1,			//3
 	TYPE_OBJECT_COIN,			//4
 	TYPE_OBJECT_BOOSTER,        //5
-	TYPE_OBJECT_HERO_BITS       //6 
+	TYPE_OBJECT_HERO_BITS       //6
 };
 
 //State machine states
@@ -84,7 +84,7 @@ typedef struct
 
 	Matrix2D		transform;	// object drawing matrix
 
-	//Used to hold the current 
+	//Used to hold the current
 	int				gridCollisionFlag;
 
 	// pointer to custom data specific for each object type
@@ -167,18 +167,18 @@ void GameStatePlatformLoad(void)
 	//3rd argument: ARGB
 	AEGfxTriAdd(
 		-0.5f, -0.5f, 0xFF000000, 0.0f, 0.0f,
-		 0.5f,  -0.5f, 0xFF000000, 0.0f, 0.0f, 
+		 0.5f,  -0.5f, 0xFF000000, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFF000000, 0.0f, 0.0f);
-	
+
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xFF000000, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFF000000, 0.0f, 0.0f, 
+		-0.5f, 0.5f, 0xFF000000, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFF000000, 0.0f, 0.0f,
 		0.5f,  0.5f, 0xFF000000, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
 
-		
-	
+
+
 	//Creating the white object
 	pObj		= sGameObjList + sGameObjNum++;
 	pObj->type	= TYPE_OBJECT_COLLISION;
@@ -189,13 +189,13 @@ void GameStatePlatformLoad(void)
 	//2nd argument: Y
 	//3rd argument: ARGB
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFFFFFFFF, 0.0f, 0.0f, 
+		-0.5f, -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
-	
+
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFFFFFFFF, 0.0f, 0.0f, 
+		-0.5f, 0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFFFFFFFF, 0.0f, 0.0f,
 		0.5f,  0.5f, 0xFFFFFFFF, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
@@ -211,13 +211,13 @@ void GameStatePlatformLoad(void)
 	//2nd argument: Y
 	//3rd argument: ARGB
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
+		-0.5f, -0.5f, 0xFF0000FF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFF0000FF, 0.0f, 0.0f);
-	
+
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xFF0000FF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
+		-0.5f, 0.5f, 0xFF0000FF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f,
 		0.5f,  0.5f, 0xFF0000FF, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
@@ -233,13 +233,13 @@ void GameStatePlatformLoad(void)
 	//2nd argument: Y
 	//3rd argument: ARGB
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFFFF0000, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f, 
+		-0.5f, -0.5f, 0xFFFF0000, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFFFF0000, 0.0f, 0.0f);
-	
+
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xFFFF0000, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f, 
+		-0.5f, 0.5f, 0xFFFF0000, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f,
 		0.5f,  0.5f, 0xFFFF0000, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
@@ -261,8 +261,8 @@ void GameStatePlatformLoad(void)
 	for(i = 0; i < Parts; ++i)
 	{
 		AEGfxTriAdd(
-		0.0f, 0.0f, 0xFFFFFF00, 0.0f, 0.0f, 
-		cosf(i*2*PI/Parts)*0.5f,  sinf(i*2*PI/Parts)*0.5f, 0xFFFFFF00, 0.0f, 0.0f, 
+		0.0f, 0.0f, 0xFFFFFF00, 0.0f, 0.0f,
+		cosf(i*2*PI/Parts)*0.5f,  sinf(i*2*PI/Parts)*0.5f, 0xFFFFFF00, 0.0f, 0.0f,
 		cosf((i+1)*2*PI/Parts)*0.5f,  sinf((i+1)*2*PI/Parts)*0.5f, 0xFFFFFF00, 0.0f, 0.0f);
 	}
 
@@ -278,8 +278,8 @@ void GameStatePlatformLoad(void)
 	//2nd argument: Y
 	//3rd argument: ARGB
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFFFF0000, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f, 
+		-0.5f, -0.5f, 0xFFFF0000, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFFFF0000, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFFFF0000, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
@@ -294,13 +294,13 @@ void GameStatePlatformLoad(void)
 	//2nd argument: Y
 	//3rd argument: ARGB
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
+		-0.5f, -0.5f, 0xFF0000FF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f,
 		-0.5f,  0.5f, 0xFF0000FF, 0.0f, 0.0f);
-	
+
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0xFF0000FF, 0.0f, 0.0f, 
-		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f, 
+		-0.5f, 0.5f, 0xFF0000FF, 0.0f, 0.0f,
+		 0.5f,  -0.5f, 0xFF0000FF, 0.0f, 0.0f,
 		0.5f,  0.5f, 0xFF0000FF, 0.0f, 0.0f);
 
 	pObj->pMesh = AEGfxMeshEnd();
@@ -334,7 +334,7 @@ void GameStatePlatformLoad(void)
 	Matrix2DTranslate(&mapTrans, (-BINARY_MAP_WIDTH/2.0f), (-BINARY_MAP_HEIGHT/2.0f));
 	Matrix2DScale(&mapScale, 30.0f, 30.0f);
 	Matrix2DConcat(&MapTransform, &mapScale, &mapTrans);
-	
+
 }
 
 void GameStatePlatformInit(void)
@@ -355,7 +355,7 @@ void GameStatePlatformInit(void)
 	/***********
 	Loop through all the array elements of MapData (which was initialized in the "GameStatePlatformLoad" function
 	from the .txt file
-		
+
 		 - Create a white or black cell
 
 		 - if the element represents the hero
@@ -366,11 +366,11 @@ void GameStatePlatformInit(void)
 		 - if the element represents an enemy
 			Create an enemy instance
 			Set its position depending on its array indices in MapData
-			
+
 		 - if the element represents a coin
 			Create a coin instance
 			Set its position depending on its array indices in MapData
-			
+
 	***********/
 	for(i = 0; i < BINARY_MAP_WIDTH; ++i)
 		for(j = 0; j < BINARY_MAP_HEIGHT; ++j)
@@ -427,7 +427,7 @@ void GameStatePlatformUpdate(void)
 	GameObjInst *pInst;
 	float winMaxX, winMaxY, winMinX, winMinY;
 	double frameTime;
-	
+
 	// ==========================================================================================
 	// Getting the window's world edges (These changes whenever the camera moves or zooms in/out)
 	// ==========================================================================================
@@ -471,7 +471,7 @@ void GameStatePlatformUpdate(void)
 
 	if(AEInputCheckCurr('Q'))
 		gGameStateNext = GS_QUIT;
-	
+
 
 
 	//Update object instances physics and behavior
@@ -548,7 +548,7 @@ void GameStatePlatformUpdate(void)
 		if collision from top
 			Snap to cell on Y axis
 			Velocity Y = 0
-	
+
 		if collision from left
 			Snap to cell on X axis
 			Velocity X = 0
@@ -637,7 +637,7 @@ void GameStatePlatformUpdate(void)
 		}
 	}
 
-	
+
 	//Computing the transformation matrices of the game object instances
 	for(i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i)
 	{
@@ -675,7 +675,7 @@ void GameStatePlatformDraw(void)
 
 	frameTime = AEFrameRateControllerGetFrameTime();
 
-	
+
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxTextureSet(NULL, 0, 0);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -703,7 +703,7 @@ void GameStatePlatformDraw(void)
 		// skip non-active object
 		if (0 == (pInst->flag & FLAG_ACTIVE))
 			continue;
-		
+
 		//Don't forget to concatenate the MapTransform matrix with the transformation of each game object instance
 
 		Matrix2DConcat(&cellTranslation, &MapTransform, &pInst->transform);
@@ -743,7 +743,7 @@ GameObjInst* gameObjInstCreate(unsigned int type, float scale, Vector2D* pPos, V
 	Vector2D zero = { 0.0f, 0.0f };
 
 	AE_ASSERT_PARM(type < sGameObjNum);
-	
+
 	// loop through the object instance list to find a non-used object instance
 	for (i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
 	{
@@ -764,7 +764,7 @@ GameObjInst* gameObjInstCreate(unsigned int type, float scale, Vector2D* pPos, V
 			pInst->state = startState;
 			pInst->innerState = INNER_STATE_ON_ENTER;
 			pInst->counter = 0;
-			
+
 			// return the newly created instance
 			return pInst;
 		}
