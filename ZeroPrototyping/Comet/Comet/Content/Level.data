@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [1.70462763, 0.452631414, 50],
+			Vec3 Translation = [-3.11578941, -0.841892362, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-008, 0, 1],
 		},
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [1.70462763, 0.452631414, 2.7791242e-007],
+			Vec3 LookTarget = [-3.11578941, -0.841892362, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -232,10 +232,10 @@ Level =
 		},
 		PlayerController = 
 		{
-			Enum LeftInput = Left,
-			Enum RightInput = Right,
-			Enum JumpInput = Up,
-			float MaxSpeed = 8,
+			Enum LeftInput = A,
+			Enum RightInput = D,
+			Enum JumpInput = W,
+			float MaxSpeed = 4,
 			float Acceleration = 0.200000003,
 			float JumpAcceleration = 4,
 			float MaxJumpSpeed = 15,

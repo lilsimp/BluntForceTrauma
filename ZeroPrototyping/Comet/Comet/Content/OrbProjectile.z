@@ -1,0 +1,17 @@
+class OrbProjectile : ZilchComponent
+{   
+/*------------------------------------------------------------------/
+File Name: OrbProjectile
+Author : Josh Ibrahim
+Creation Date: 1/14/2016
+Purpouse: Prototype for the Combat System: Orb Throwing Mechanic.
+-------------------------------------------------------------------*/
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+}

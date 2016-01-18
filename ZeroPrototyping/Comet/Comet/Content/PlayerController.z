@@ -2,13 +2,13 @@ class PlayerController : ZilchComponent
 {
     
     [Property]
-    var LeftInput : Keys = Keys.Left;
+    var LeftInput : Keys = Keys.A;
     
     [Property]
-    var RightInput : Keys = Keys.Right;
+    var RightInput : Keys = Keys.D;
     
     [Property]
-    var JumpInput : Keys = Keys.Up;
+    var JumpInput : Keys = Keys.W;
     
     [Property]
     var MaxSpeed : Real = 8;
