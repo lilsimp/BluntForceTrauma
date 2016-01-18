@@ -106,7 +106,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-0.301647484, 2.71512961, 50],
+			Vec3 Translation = [0.697926462, 4.54428053, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-008, 0, 1],
 		},
@@ -118,7 +118,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 100,
+			float Size = 30.1194572,
 		},
 		EditorCameraController = 
 		{
@@ -126,7 +126,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-0.301647484, 2.71512961, 0],
+			Vec3 LookTarget = [0.697926462, 4.54428053, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -277,6 +277,7 @@ Level =
 			Enum SpaceInput = Up,
 			float MaxSpeed = 8,
 			float Acceleration = 1,
+			float JumpAcceleration = 4,
 		},
 		Collided = 
 		{
@@ -513,24 +514,6 @@ Level =
 			string SerializedGroupName = "4e740859314e5515:DefaultGroup",
 			Vec3 Offset = [0, 0, 0],
 			Vec3 Size = [0.5, 0.5, 0.5],
-		},
-	},
-	ArchetypeInstance = 
-	{
-		string Name = "56cb1f192701c099:FireParticle",
-		LinkId = 
-		{
-			uint Id = 11,
-		},
-		Transform = 
-		{
-			Vec3 Translation = [-1.05406988, 11.2425947, 0],
-			Vec3 Scale = [0.100000001, 0.100000001, 1],
-			Quat Rotation = [0, 0, 0, 1],
-		},
-		Named = 
-		{
-			string Name = "Sprite",
 		},
 	},
 },
