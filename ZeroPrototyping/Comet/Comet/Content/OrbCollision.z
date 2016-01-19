@@ -1,0 +1,36 @@
+class OrbCollision : ZilchComponent
+{
+    var OrbProjectilePath: CogPath;
+    var OrbDestructor : OrbProjectile;
+    
+    function Initialize(init : CogInitializer)
+    {    //get the OrbProjectile Script to access member functions
+         this.OrbDestructor = this.OrbProjectilePath.DirectCog.OrbProjectile;
+         
+         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        // Get the object we collided with:
+        var otherObject = event.OtherObject;
+        
+        // If the orb collides with any objects the orb returns to the player
+        if (this.OrbDestructor != null)
+        {
+            if (this.OrbDestructor.Orb != null)
+            {
+                if (otherObject.Name == "EvilBob")
+                {
+                   //this.OrbDestructor.Orb.RigidBody.Velocity *= -1;
+                }
+            
+                if (otherObject.Name == "Bob")
+                {
+                    //destroys Orb on contact with player
+                    this.OrbDestructor.Orb.Destroy();
+                }
+            }
+        }
+    }
+}

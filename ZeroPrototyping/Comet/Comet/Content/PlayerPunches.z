@@ -6,11 +6,13 @@ Purpouse: Prototype for the Combat System: Punch Mechanic.
 -------------------------------------------------------------------*/
 class PlayerPunches : ZilchComponent
 {
-    //punch destroy
-    var Timer : Real = 0.7;
+    //punch objects
     var Punch : Cog = null;
     var Punch2 : Cog = null;
     
+     //to switch between punches
+     var Switch: Real = 0; 
+        
     [Property]
     var MaxPunchDistance : Real = 2;
     function Initialize(init : CogInitializer)
@@ -25,51 +27,56 @@ class PlayerPunches : ZilchComponent
         var playerWorldPosition = this.Owner.Transform.WorldTranslation;
         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
         var direction = mousePosition - this.Owner.Transform.WorldTranslation;
+        var direction2 = mousePosition - this.Owner.Transform.WorldTranslation;
         
         direction = Math.Normalize(direction);
-           
-        //this.Timer += event.Dt;
-        
+        direction2 = Math.Normalize(direction);
+       
         if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && this.Punch == null)
         {
-            
+           //for punch archetypes
            var spawnObject = Archetype.Punch;
-           
            var spawnObject2 = Archetype.Punch2;
-              
-           //vector variables
-           var velocity = Real3(1,1,1);
            
             //spawn punch
-            this.Punch  = this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns punches
-            this.Punch2  = this.Space.CreateAtPosition(spawnObject2, playerWorldPosition + (direction * 0.9) ); // spawns  second punch
+            if (this.Switch == 0)
+            {
+                this.Punch  = this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns punches
+                this.Switch += 1;
+            }
+            else if (this.Punch2 == null)
+            {
+                this.Switch = 0;
+                this.Punch2  = this.Space.CreateAtPosition(spawnObject2, playerWorldPosition + (direction * 0.9) ); // spawns  second punch
+            }
         }    
         
-        if (this.Punch != null && this.Punch2 !=null)
+        if (this.Punch != null)
         {
             
             this.Punch.RigidBody.Velocity += direction;
-            this.Punch2.RigidBody.Velocity += direction;
             
             //distance formual finds the distance between the player and the punch
             var punchDistance = (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y);
-            var punchDistance2 = (playerWorldPosition.X - this.Punch2.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Punch2.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Punch2.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Punch2.Transform.WorldTranslation.Y);
-            
+
             //sets the distance for punch 
             if ( punchDistance >= this.MaxPunchDistance)
             {
                     this.Punch.Destroy();
-                    this.Punch2.Destroy();
-                    
-                    this.Timer = 0;
             }
+        }
+        else if (this.Punch2 !=null)
+        {
+            this.Punch2.RigidBody.Velocity += direction2;
             
-            if ( punchDistance2 >= (this.MaxPunchDistance+1))
+            var punchDistance2 = (playerWorldPosition.X - this.Punch2.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Punch2.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Punch2.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Punch2.Transform.WorldTranslation.Y);
+            
+            if ( punchDistance2 >= (this.MaxPunchDistance+10))
             {
                     this.Punch2.Destroy();
-    
-            }   
+            }  
         }
+        
     
     }
 }

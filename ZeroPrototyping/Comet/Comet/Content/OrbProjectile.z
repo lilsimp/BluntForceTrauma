@@ -6,12 +6,48 @@ Author : Josh Ibrahim
 Creation Date: 1/14/2016
 Purpouse: Prototype for the Combat System: Orb Throwing Mechanic.
 -------------------------------------------------------------------*/
+    var Orb : Cog = null;
+    
+    
+    //ray controller
+    var Ray: Ray = Ray();
+    
+    
     function Initialize(init : CogInitializer)
     {
-        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
     {
+         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
+         var playerWorldPosition = this.Owner.Transform.WorldTranslation; //gets player world position
+         
+         var direction = mousePosition - this.Owner.Transform.WorldTranslation; //finds the angle of which of the player and mouse is
+         
+             direction = Math.Normalize(direction);//Normalize Direction
+         
+           if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Orb == null)
+        {
+            var spawnObject = Archetype.Orb;
+            
+            this.Orb =  this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns  orb
+        }
+        
+        
+         if (this.Orb != null)
+        {            
+            this.Orb.RigidBody.Velocity += direction;
+            
+            this.Ray.Start = this.Orb.Transform.WorldTranslation;
+            this.Ray.Direction = direction;
+            var castResult = this.Space.PhysicsSpace.CastRayFirst(this.Ray);
+            
+            //distance formual finds the distance between the player and the orb
+            var orbDistance = (playerWorldPosition.X - this.Orb.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Orb.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Orb.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Orb.Transform.WorldTranslation.Y);
+            
+        
+        }
     }
+
 }
