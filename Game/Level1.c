@@ -260,6 +260,7 @@ void Level1_Update(void) {
 
   frameTime = AEFrameRateControllerGetFrameTime();
 
+/******************************************************************************/
   /* Handle Input */
   /***********
   if right is pressed
@@ -291,9 +292,9 @@ void Level1_Update(void) {
 
   if(AEInputCheckCurr('N'))
     GSM_NEXT++;
+/******************************************************************************/
 
-
-
+/******************************************************************************/
   /* Update object instances physics and behavior */
   for(i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i) {
     GameObjInst *pInst = sGameObjInstList + i;
@@ -325,7 +326,9 @@ void Level1_Update(void) {
         gameObjInstDestroy(pInst);
     }
   }
+/******************************************************************************/
 
+/******************************************************************************/
   /* Update object instances positions */
   for(i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i) {
     GameObjInst *pInst = sGameObjInstList + i;
@@ -341,7 +344,9 @@ void Level1_Update(void) {
     pInst->posCurr.x += pInst->velCurr.x * frameTime;
     pInst->posCurr.y += pInst->velCurr.y * frameTime;
   }
+/******************************************************************************/
 
+/******************************************************************************/
   /* Check for grid collision */
   for(i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i) {
     GameObjInst *pInst = sGameObjInstList + i;
@@ -388,8 +393,9 @@ void Level1_Update(void) {
       pInst->velCurr.x = 0;
     }
   }
+/******************************************************************************/
 
-
+/******************************************************************************/
   /* Checking for collision among object instances: */
   /* Player against enemies */
   /* Player against coins */
@@ -437,7 +443,9 @@ void Level1_Update(void) {
       }
     }
   }
+/******************************************************************************/
 
+/******************************************************************************/
   /* Computing the transformation matrices of the game object instances */
   for(i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i) {
     Matrix2D scale, rot, trans, temp;
@@ -454,14 +462,13 @@ void Level1_Update(void) {
     Matrix2DConcat(&temp, &trans, &rot);
     Matrix2DConcat(&pInst->transform, &temp, &scale);
   }
+/******************************************************************************/
 
   /*
   if(pPlayer->velCurr.y > 0)
     jumpeParticleCreate();
   */
-
-  if (!(--current_health))
-    GSM_NEXT = LEVEL_2;
+  
   fprintf(output, "Level1:Update\n");
 }
 
@@ -540,7 +547,7 @@ void Level1_Draw(void) {
 /***************************************************************************/
 void Level1_Free(void) {
   unsigned int i;
-  /* kill all object in the list */
+  /* Destroy all object in the list */
   for (i = 0; i < GAME_OBJ_INST_NUM_MAX; ++i)
     gameObjInstDestroy(sGameObjInstList + i);
 
@@ -557,14 +564,13 @@ void Level1_Free(void) {
 /***************************************************************************/
 void Level1_Unload(void) {
   unsigned int i;
-  /* free all CREATED mesh */
-  for (i = 0; i < sGameObjNum; i++)
+  /* free all created meshes */
+  for (i = 0; i < sGameObjNum; ++i)
     AEGfxMeshFree(sGameObjList[i].pMesh);
 
   /*********
   Free the map data
   *********/
-
   FreeMapData(&Level1_Map);
 
   fprintf(output, "Level1:Unload\n");
