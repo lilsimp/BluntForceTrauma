@@ -106,7 +106,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [0, 0, 50],
+			Vec3 Translation = [-9.242136, 0.825191259, 90],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-008, 0, 1],
 		},
@@ -126,7 +126,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [0, 0, 0],
+			Vec3 LookTarget = [-9.242136, 0.825191259, 40],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -168,9 +168,6 @@ Level =
 		{
 			bool Active = true,
 		},
-		CameraFloat = 
-		{
-		},
 		RigidBody = 
 		{
 			bool Static = false,
@@ -197,6 +194,9 @@ Level =
 			bool PointGravity = false,
 			bool PointForce = false,
 			bool Buoyancy = false,
+		},
+		CameraFloat = 
+		{
 		},
 	},
 	Cog = 

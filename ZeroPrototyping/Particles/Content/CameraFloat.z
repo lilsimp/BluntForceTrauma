@@ -1,6 +1,6 @@
 class CameraFloat : ZilchComponent
 {
-    
+    var MaxSpeedX : Real = 1;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -8,6 +8,25 @@ class CameraFloat : ZilchComponent
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-        this.Owner.Transform.Translation = this.Owner.Space.FindObjectByName("Player").Transform.Translation + Real3(0,0,40);
+        var newvel = Real3(0,0,0);
+        
+        var distanceabsx = Math.Abs(this.Owner.Space.FindObjectByName("Player").Transform.Translation.X - this.Owner.Transform.Translation.X);
+        var distancex = this.Owner.Space.FindObjectByName("Player").Transform.Translation.X - this.Owner.Transform.Translation.X;
+
+        if (distanceabsx >= 0.000000001)
+        {
+            newvel += Real3(distancex * 3, 0 ,0);
+        }
+        
+        var distanceabsy = Math.Abs(this.Owner.Space.FindObjectByName("Player").Transform.Translation.Y - this.Owner.Transform.Translation.Y);
+        var distancey = this.Owner.Space.FindObjectByName("Player").Transform.Translation.Y - this.Owner.Transform.Translation.Y;
+
+        if (distanceabsy >= 0.000000001)
+        {
+             newvel += Real3(0, distancey ,0);
+        }
+        
+        this.Owner.RigidBody.Velocity = newvel;
+
     }
 }

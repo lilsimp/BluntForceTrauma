@@ -20,16 +20,19 @@ class PlayerController : ZilchComponent
     [Property]
     var JumpAcceleration : Real = 4;
     [Property]
-    var MaxJumpSpeed : Real = 15;
+    var MaxJumpSpeed : Real = 100;
     
     var JumpTimer : Real = 0;
     var JumpCancel : Real = 1;
     var StopJumping : Boolean = false;
     var CanJump : Boolean = true;
         
+    var HitZero : Integer = 2;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
     }
 
     function OnLogicUpdate(event : UpdateEvent)
@@ -47,48 +50,30 @@ class PlayerController : ZilchComponent
         {
             vf.X += acceleration;
         }
-        
+    
         if(this.CanJump == true)
         {
-            if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.JumpInput))
+            if(Zero.Keyboard.KeyIsDown(Keys.Space) || Zero.Keyboard.KeyIsDown(this.JumpInput) && this.Owner.RigidBody.Velocity.Y < this.MaxSpeed)
             {
-                this.JumpTimer += event.Dt;
+                vf.Y += this.JumpAcceleration;
                 
-                Console.WriteLine("`this.JumpTimer`");
-                
-                if(this.JumpTimer >= this.JumpCancel)
+                if(this.Owner.RigidBody.Velocity.Y > this.MaxJumpSpeed)
                 {
-                    this.StopJumping = true;
-                    this.JumpTimer = 0;
+                    this.CanJump = false;
                 }
-                
-                if(this.StopJumping == false)
-                {
-                    if(this.Owner.RigidBody.Velocity.Y <= this.MaxJumpSpeed)
-                    {
-                        vf.Y += this.JumpAcceleration;
-                    }
-                }
-                
             }
-            else
-            {
-                this.JumpTimer = 0;
-                this.StopJumping = false;
-            }
-        }
+        }      
         
-        if(this.Owner.RigidBody.Velocity.Y >= this.MaxJumpSpeed)
-        {
-            this.CanJump = false;
-        }
-        else 
+        this.Owner.RigidBody.Velocity += vf;
+    }
+    
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        var otherObject = event.OtherObject;
+         
+        if (otherObject.Name == "Ground")
         {
             this.CanJump = true;
         }
-
-        
-        
-        this.Owner.RigidBody.Velocity += vf;
     }
 }
