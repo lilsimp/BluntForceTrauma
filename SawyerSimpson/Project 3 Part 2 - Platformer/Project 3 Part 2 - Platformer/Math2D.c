@@ -125,3 +125,32 @@ int StaticCircleToStaticCircle(Vector2D *pCenter0, float Radius0, Vector2D *pCen
 int StaticRectToStaticRect(Vector2D *pRect0, float Width0, float Height0, Vector2D *pRect1, float Width1, float Height1) {
   return StaticPointToStaticRect(pRect1, pRect0, ( Width0 + Width1 ), ( Height0 + Height1 ));
 }
+
+//////////////////////
+// New to Project 3 //
+//////////////////////
+
+/*
+This function checks if a static circle is intersecting with a static rectangle
+
+Circle:		Center is "Center", radius is "Radius"
+Rectangle:	Center is "Rect", width is "Width" and height is "Height"
+Function returns true is the circle and rectangle are intersecting, otherwise it returns false
+*/
+
+int StaticCircleToStaticRect(Vector2D *pCenter, float Radius, Vector2D *pRect, float Width, float Height) {
+	float X = fabsf(pCenter->x - pRect->x);
+	float Y = fabsf(pCenter->y - pRect->y);
+	float dist = ((X - Width / 2) * (X - Width / 2)) + ((Y - Height / 2) * (Y - Height / 2));
+
+	if (X > (Width / 2 + Radius))
+		return 0;
+	if (Y > (Height / 2 + Radius))
+		return 0;
+	if (X <= (Width / 2))
+		return 1;
+	if (Y <= (Height / 2))
+		return 1;
+
+	return (int)(dist <= (Radius * Radius));
+}

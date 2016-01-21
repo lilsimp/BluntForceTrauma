@@ -13,6 +13,7 @@ History
 #include "Level1.h"
 #include <stdio.h> /* fopen_s, fscanf_s, fprintf, fclose */
 
+#define ENEMY_IDLE_TIME 2.0
 #define FLAG_ACTIVE      0x00000001
 
 /* Collision flags */
@@ -48,6 +49,8 @@ static int TotalCoins;
 /* Current Player info */
 static int current_health;
 static int current_lives;
+
+void EnemyStateMachine(GameObjInst *pInst);
 
 /***************************************************************************/
 /*!
@@ -568,4 +571,78 @@ void Level1_Unload(void) {
   FreeMapData(&Level1_Map);
 
   fprintf(output, "Level1:Unload\n");
+}
+
+void EnemyStateMachine(GameObjInst *pInst) {
+	/***********
+	This state machine has 2 states: STATE_GOING_LEFT and STATE_GOING_RIGHT
+	Each state has 3 inner states: INNER_STATE_ON_ENTER, INNER_STATE_ON_UPDATE, INNER_STATE_ON_EXIT
+	Use "switch" statements to determine which state and inner state the enemy is currently in.
+
+
+	STATE_GOING_LEFT
+	INNER_STATE_ON_ENTER
+	Set velocity X to -MOVE_VELOCITY_ENEMY
+	Set inner state to "on update"
+
+	INNER_STATE_ON_UPDATE
+	If collision on left side OR bottom left cell is non collidable
+	Initialize the counter to ENEMY_IDLE_TIME
+	Set inner state to on exit
+	Set velocity X to 0
+
+
+	INNER_STATE_ON_EXIT
+	Decrement counter by frame time
+	if counter is less than 0 (sprite's idle time is over)
+	Set state to "going right"
+	Set inner state to "on enter"
+
+	STATE_GOING_RIGHT is basically the same, with few modifications.
+
+	***********/
+
+	if (pInst->state == STATE_GOING_LEFT) {
+		if (pInst->innerState == INNER_STATE_ON_ENTER) {
+			pInst->velCurr.x = -MOVE_VELOCITY_ENEMY;
+			pInst->innerState = INNER_STATE_ON_UPDATE;
+		}
+		else if (pInst->innerState == INNER_STATE_ON_UPDATE) {
+			if (pInst->gridCollisionFlag & COLLISION_LEFT || !GetCellValue(pInst->posCurr.x - 1, pInst->posCurr.y - 1, Level1_Map.BinaryCollisionArray)) {
+				pInst->counter = ENEMY_IDLE_TIME;
+				pInst->innerState = INNER_STATE_ON_EXIT;
+				pInst->velCurr.x = 0.0f;
+			}
+		}
+		else if (pInst->innerState == INNER_STATE_ON_EXIT) {
+			pInst->counter -= AEFrameRateControllerGetFrameTime();
+
+			if (pInst->counter < 0) {
+				pInst->state = STATE_GOING_RIGHT;
+				pInst->innerState = INNER_STATE_ON_ENTER;
+			}
+		}
+	}
+	else if (pInst->state == STATE_GOING_RIGHT)	{
+		if (pInst->innerState == INNER_STATE_ON_ENTER) {
+			pInst->velCurr.x = MOVE_VELOCITY_ENEMY;
+			pInst->innerState = INNER_STATE_ON_UPDATE;
+		}
+		else if (pInst->innerState == INNER_STATE_ON_UPDATE) {
+			if (pInst->gridCollisionFlag & COLLISION_RIGHT || !GetCellValue(pInst->posCurr.x + 1, pInst->posCurr.y - 1, Level1_Map.BinaryCollisionArray)
+				) {
+				pInst->counter = ENEMY_IDLE_TIME;
+				pInst->innerState = INNER_STATE_ON_EXIT;
+				pInst->velCurr.x = 0.0f;
+			}
+		}
+		else if (pInst->innerState == INNER_STATE_ON_EXIT) {
+			pInst->counter -= AEFrameRateControllerGetFrameTime();
+
+			if (pInst->counter < 0) {
+				pInst->state = STATE_GOING_LEFT;
+				pInst->innerState = INNER_STATE_ON_ENTER;
+			}
+		}
+	}
 }

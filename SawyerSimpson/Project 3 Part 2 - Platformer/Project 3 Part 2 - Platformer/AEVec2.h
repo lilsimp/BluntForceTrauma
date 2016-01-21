@@ -58,6 +58,7 @@ AE_API f32		AEVec2DotProduct		(AEVec2* pVec0, AEVec2* pVec1);
 AE_API f32		AEVec2CrossProductMag	(AEVec2* pVec0, AEVec2* pVec1);
 
 AE_API void		AEVec2FromAngle(AEVec2* pResult, f32 angle);
+AE_API float	AEVec2AngleFromVec2(AEVec2* pVec0);
 
 
 

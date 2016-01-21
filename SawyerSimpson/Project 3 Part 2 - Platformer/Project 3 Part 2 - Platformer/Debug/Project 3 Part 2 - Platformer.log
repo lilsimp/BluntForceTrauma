@@ -1,44 +1,38 @@
-﻿Build started 1/17/2016 6:32:51 PM.
+﻿Build started 1/20/2016 6:14:42 PM.
      1>Project "C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\Alpha_Engine /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt BinaryMap.c GameStateManager.c Level1.c Level2.c Level3.c
-         Level3.c
-         Level2.c
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\Alpha_Engine /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt GameStateManager.c Level1.c Math2D.c
+         Math2D.c
          Level1.c
      1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\vector2d.h(17): warning C4005: 'PI' : macro redefinition
                  c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\aeexport.h(20) : see previous definition of 'PI'
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(76): warning C4047: 'function' : 'int' differs in levels of indirection from 'GameObj *'
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(76): warning C4024: 'AllGameObjects' : different types for formal and actual parameter 1
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(76): warning C4020: 'AllGameObjects' : too many actual parameters
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(77): warning C4047: 'function' : 'int' differs in levels of indirection from 'GameObjInst *'
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(77): warning C4024: 'AllGameObjectInsts' : different types for formal and actual parameter 1
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(77): warning C4020: 'AllGameObjectInsts' : too many actual parameters
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(122): warning C4020: 'make_square_object' : too many actual parameters
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(62): warning C4101: 'CircleAngleStep' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(62): warning C4101: 'i' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(217): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(218): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(161): warning C4101: 'Pos' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(160): warning C4101: 'pInst' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(317): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(320): warning C4013: 'EnemyStateMachine' undefined; assuming extern returning int
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(341): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(342): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(432): warning C4013: 'StaticCircleToStaticRect' undefined; assuming extern returning int
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(244): warning C4101: 'pInst' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(243): warning C4101: 'j' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(481): warning C4101: 'strBuffer' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(479): warning C4101: 'cellFinalTransformation' : unreferenced local variable
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(478): warning C4101: 'j' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(79): warning C4047: 'function' : 'int' differs in levels of indirection from 'GameObj *'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(79): warning C4024: 'AllGameObjects' : different types for formal and actual parameter 1
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(79): warning C4020: 'AllGameObjects' : too many actual parameters
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(80): warning C4047: 'function' : 'int' differs in levels of indirection from 'GameObjInst *'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(80): warning C4024: 'AllGameObjectInsts' : different types for formal and actual parameter 1
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(80): warning C4020: 'AllGameObjectInsts' : too many actual parameters
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(125): warning C4020: 'make_square_object' : too many actual parameters
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(65): warning C4101: 'CircleAngleStep' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(65): warning C4101: 'i' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(220): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(221): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(164): warning C4101: 'Pos' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(163): warning C4101: 'pInst' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(320): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(344): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(345): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(247): warning C4101: 'pInst' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(246): warning C4101: 'j' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(484): warning C4101: 'strBuffer' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(482): warning C4101: 'cellFinalTransformation' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(481): warning C4101: 'j' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(611): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\level1.c(633): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
          GameStateManager.c
      1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\vector2d.h(17): warning C4005: 'PI' : macro redefinition
                  c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\aeexport.h(20) : see previous definition of 'PI'
      1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\gamestatemanager.c(41): warning C4101: 'i' : unreferenced local variable
-         BinaryMap.c
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\binarymap.c(67): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\binarymap.c(76): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\binarymap.c(85): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
-     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project 3 part 2 - platformer\project 3 part 2 - platformer\binarymap.c(94): warning C4244: 'function' : conversion from 'float' to 'unsigned int', possible loss of data
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.lib" /MACHINE:X86 /SAFESEH Debug\BinaryMap.obj
@@ -54,7 +48,7 @@
          Debug\System.obj
          Debug\Vector2D.obj
      1>BinaryMap.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEFrameRateControllerGetFrameTime referenced in function _Level1_Draw
+     1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEFrameRateControllerGetFrameTime referenced in function _EnemyStateMachine
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxSetRenderMode referenced in function _Level1_Draw
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMinX referenced in function _Level1_Update
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxGetWinMaxX referenced in function _Level1_Update
@@ -67,14 +61,12 @@
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshFree referenced in function _Level1_Unload
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEGfxTextureSet referenced in function _Level1_Draw
      1>Level1.obj : error LNK2019: unresolved external symbol __imp__AEInputCheckCurr referenced in function _Level1_Update
-     1>Level1.obj : error LNK2019: unresolved external symbol _EnemyStateMachine referenced in function _Level1_Update
-     1>Level1.obj : error LNK2019: unresolved external symbol _StaticCircleToStaticRect referenced in function _Level1_Update
      1>Objects.obj : error LNK2019: unresolved external symbol __imp__AEGfxMeshStart referenced in function _make_circle_object
      1>Objects.obj : error LNK2019: unresolved external symbol __imp__AEGfxTriAdd referenced in function _make_circle_object
      1>MSVCRTD.lib(crtexew.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function ___tmainCRTStartup
-     1>C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.exe : fatal error LNK1120: 18 unresolved externals
+     1>C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Debug\Project 3 Part 2 - Platformer.exe : fatal error LNK1120: 16 unresolved externals
      1>Done Building Project "C:\Users\sawyer.simpson\Desktop\BluntForceTrauma\SawyerSimpson\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer\Project 3 Part 2 - Platformer.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:06.28
+Time Elapsed 00:00:01.44
