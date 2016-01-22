@@ -1,0 +1,85 @@
+class Camerashake : ZilchComponent
+{
+    //creates random object
+    var Rng : Random;
+    
+    //duration of shake (length in seconds)
+    var Duration : Real = 0.50;
+    
+    //magnitude of shake (strength)
+    var Magnitude : Real = 0.75;
+    
+    //timer KEEP ZER0
+    var Timer: Real = 0;
+    
+    //flag for shake
+    var Shake : Boolean = false;
+    
+    
+    [Property]
+    var Camera_Cog : CogPath;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        this.Rng = Random();
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.Shake == true)
+        {
+            this.Shake_Camera(event);
+        }
+    }
+    
+    //call to begin shake
+    function BeginShake()
+    {
+        this.Shake = true;
+    }
+    
+     //call if you need to set  duration(length), magnitude(strength)
+    function BeginShake(duration : Real,  magnitude : Real)
+    {
+        //overrides for duration and magnitudes
+        this.Duration = duration;
+        this.Magnitude = magnitude;
+        
+        this.Shake = true;
+    }
+    
+    
+    function Shake_Camera(event : UpdateEvent)
+    {
+         if (this.Timer >= this.Duration)
+         {
+            this.EndShake();
+         }
+         else
+         {
+            
+            var math = (1.0 - this.Timer / this.Duration) * this.Magnitude;
+            
+            var temp_magnitude = Real3(math,math,math);
+            
+            var direction = this.Rng.UnitReal3();
+           
+            var shake_vector = direction * temp_magnitude;
+    
+            
+            this.Camera_Cog.Cog.Transform.Translation = (shake_vector);
+            this.Timer += event.Dt;
+         }
+    }
+    
+    
+    //ends shake,  Shake_Camera Calls automatically
+    function EndShake()
+    {
+        this.Shake = false;
+        this.Camera_Cog.Cog.Transform.Translation = (Real3.Zero);
+    }
+    
+}
