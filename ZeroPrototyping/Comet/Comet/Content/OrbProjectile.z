@@ -6,48 +6,53 @@ Author : Josh Ibrahim
 Creation Date: 1/14/2016
 Purpouse: Prototype for the Combat System: Orb Throwing Mechanic.
 -------------------------------------------------------------------*/
+    //variable to represent orb object in 2d space
     var Orb : Cog = null;
     
-    
-    //ray controller
-    var Ray: Ray = Ray();
-    
+    var SpawnObject : Archetype =  Archetype.Orb;
+    var PlayerPosition : Real3;
+    var Phase : Integer = 0;
     
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);        
     }
+
 
     function OnLogicUpdate(event : UpdateEvent)
     {
-         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
-         var playerWorldPosition = this.Owner.Transform.WorldTranslation; //gets player world position
+            var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
+            this.PlayerPosition = this.Owner.Transform.WorldTranslation; //gets player world position
          
-         var direction = mousePosition - this.Owner.Transform.WorldTranslation; //finds the angle of which of the player and mouse is
+            var direction = mousePosition - this.PlayerPosition; //finds the angle of which of the player and mouse is
          
              direction = Math.Normalize(direction);//Normalize Direction
          
            if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Orb == null)
-        {
-            var spawnObject = Archetype.Orb;
-            
-            this.Orb =  this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns  orb
-        }
+            {
+                this.Orb =  this.Space.CreateAtPosition(this.SpawnObject, this.PlayerPosition + (direction * 1.29) ); // spawns  orb
+                this.Phase = 1;
+            }
         
-        
-         if (this.Orb != null)
-        {            
-            this.Orb.RigidBody.Velocity += direction;
+            if (this.Orb != null)
+            {   
+                if (this.Phase == 1)
+                this.Orb.RigidBody.Velocity += direction;
             
-            this.Ray.Start = this.Orb.Transform.WorldTranslation;
-            this.Ray.Direction = direction;
-            var castResult = this.Space.PhysicsSpace.CastRayFirst(this.Ray);
+                //distance formual finds the distance between the player and the orb
+                var orbDistance = (this.PlayerPosition.X - this.Orb.Transform.WorldTranslation.X) * (this.PlayerPosition.X - this.Orb.Transform.WorldTranslation.X) 
+                + (this.PlayerPosition.Y - this.Orb.Transform.WorldTranslation.Y) * (this.PlayerPosition.Y - this.Orb.Transform.WorldTranslation.Y);
             
-            //distance formual finds the distance between the player and the orb
-            var orbDistance = (playerWorldPosition.X - this.Orb.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Orb.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Orb.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Orb.Transform.WorldTranslation.Y);
-            
-        
-        }
+                if (orbDistance >= 80)
+                {
+                    this.Phase = 2;
+                }
+                
+                if (this.Phase == 2)
+                {
+                    direction = this.PlayerPosition - this.Orb.Transform.WorldTranslation;
+                    this.Orb.Transform.Translation += direction * 0.1;
+                }
+            }
     }
-
 }
