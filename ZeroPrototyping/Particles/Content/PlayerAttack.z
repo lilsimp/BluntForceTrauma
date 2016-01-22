@@ -1,0 +1,31 @@
+class PlayerAttack : ZilchComponent
+{
+    [Property]
+    var SpawnObject : Archetype =  Archetype.Orb;
+    [Property]
+    var MaxDistance : Real = 15;
+    
+    var Orb : Cog = null;
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function ThrowOrb()
+    {
+        var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0);
+        var direction = mousePosition - this.Owner.Transform.Translation;
+        direction = Math.Normalize(direction);
+        
+        this.Orb = this.Space.CreateAtPosition(this.SpawnObject, this.Owner.Transform.Translation + direction *1.2); // spawns  orb
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Orb == null)
+        {
+            this.ThrowOrb();
+        }
+    }
+}

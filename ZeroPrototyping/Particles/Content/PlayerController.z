@@ -71,7 +71,7 @@ class PlayerController : ZilchComponent
     {
         var otherObject = event.OtherObject;
          
-        if (otherObject.Name == "Ground")
+        if (otherObject.Name == "Ground" || otherObject.Name == "Box")
         {
             this.CanJump = true;
         }

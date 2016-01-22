@@ -37,7 +37,7 @@ class Collided : ZilchComponent
         // If we collided with the block,
         if (otherObject.Name == "Box")
         {
-            this.Space.LevelSettings.Particles.RingParticles(Real4(0,0,0,0), 20, this.Owner.Transform.Translation, 8);
+            this.Space.LevelSettings.Particles.RingParticles(Real4(0,0,0,0), 20, otherObject.Transform.Translation, 8);
         }
         
         if (otherObject.Name == "Spike")

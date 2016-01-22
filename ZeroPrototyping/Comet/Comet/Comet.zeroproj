@@ -6,7 +6,7 @@ Cog =
 		string ProjectOwner = "",
 		string DefaultLevel = "Level",
 		string ProjectSpace = "Space",
-		string ProjectFolder = "C:\Users\Points\Desktop\BluntForceTrauma\ZeroPrototyping\Comet\Comet",
+		string ProjectFolder = "C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\ZeroPrototyping\Comet\Comet",
 		uint ProjectEngineRevision = 12624,
 		bool AutoTakeProjectScreenshot = true,
 	},

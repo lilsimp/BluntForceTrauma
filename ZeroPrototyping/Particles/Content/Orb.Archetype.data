@@ -63,7 +63,24 @@ Cog =
 		Vec3 Offset = [0, 0, 0],
 		Vec3 Size = [0.400000006, 0.400000006, 0.5],
 	},
-	OrbCollision = 
+	OrbProjectile = 
 	{
+		float Speed = 5,
+		Vec3 EndPoint = [0, 0, 0],
+	},
+	IgnoreSpaceEffects = 
+	{
+		bool Drag = true,
+		bool Flow = true,
+		bool Force = true,
+		bool Gravity = true,
+		bool Thrust = false,
+		bool Vortex = false,
+		bool Wind = false,
+		bool Invalid = false,
+		bool Torque = false,
+		bool PointGravity = false,
+		bool PointForce = true,
+		bool Buoyancy = false,
 	},
 },

@@ -15,14 +15,10 @@ class OrbCollision : ZilchComponent
         var otherObject = event.OtherObject;
         
         if (this.OrbController != null)
-        this.OrbController.OrbProjectile.Phase = 2;
             
         if (otherObject.Name == "Player")
         {
-            if (this.OrbController != null)
-            this.OrbController.OrbProjectile.Orb.Destroy();
-        }
             
+        }
     }
-       
 }

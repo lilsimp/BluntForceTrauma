@@ -30,7 +30,7 @@ Purpouse: Prototype for the Combat System: Orb Throwing Mechanic.
          
            if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Orb == null)
             {
-                this.Orb =  this.Space.CreateAtPosition(this.SpawnObject, this.PlayerPosition + (direction * 1.29) ); // spawns  orb
+                this.Orb =  this.Space.CreateAtPosition(this.SpawnObject, this.PlayerPosition); // spawns  orb
                 this.Phase = 1;
             }
         

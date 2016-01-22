@@ -6,53 +6,70 @@ Author : Josh Ibrahim
 Creation Date: 1/14/2016
 Purpouse: Prototype for the Combat System: Orb Throwing Mechanic.
 -------------------------------------------------------------------*/
-    //variable to represent orb object in 2d space
-    var Orb : Cog = null;
     
-    var SpawnObject : Archetype =  Archetype.Orb;
-    var PlayerPosition : Real3;
-    var Phase : Integer = 0;
+    [Property]
+    var Speed : Real = 5.0;
+    
+    //variable to represent orb object in 2d space
+    var Player : Cog = null;
+    [Property]
+    var EndPoint : Real3;
+    var Phase : Integer;
+    
+    function ReturnToPlayer()
+    {
+        var direction = this.Owner.Transform.Translation - this.Player.Transform.Translation;
+        direction = Math.Normalize(direction);
+        
+        direction *= this.Speed;
+        
+        this.Owner.Transform.Translation += direction;
+    }
+    
+    function SetEndPoint()
+    {
+        var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0);
+        
+    }
+    
+    function MoveInDirection()
+    {
+        
+    }
     
     function Initialize(init : CogInitializer)
     {
-        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+        
+        this.Player = this.Owner.Space.FindObjectByName("Player"); //gets player world position
+        this.Phase  = 0;
+        this.SetEndPoint();
     }
-
-
+    
+    function OnCollisionPersisted(event : CollisionEvent)
+    {
+        var otherObject = event.OtherObject;
+        
+        if (otherObject.Name == "Player" && this.Phase == 1)
+        {
+            this.Owner.Destroy();
+        }
+        else
+        {
+            this.Phase = 1;
+        }
+    }
+    
     function OnLogicUpdate(event : UpdateEvent)
     {
-            var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
-            this.PlayerPosition = this.Owner.Transform.WorldTranslation; //gets player world position
-         
-            var direction = mousePosition - this.PlayerPosition; //finds the angle of which of the player and mouse is
-         
-             direction = Math.Normalize(direction);//Normalize Direction
-         
-           if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Orb == null)
-            {
-                this.Orb =  this.Space.CreateAtPosition(this.SpawnObject, this.PlayerPosition + (direction * 1.29) ); // spawns  orb
-                this.Phase = 1;
-            }
-        
-            if (this.Orb != null)
-            {   
-                if (this.Phase == 1)
-                this.Orb.RigidBody.Velocity += direction;
-            
-                //distance formual finds the distance between the player and the orb
-                var orbDistance = (this.PlayerPosition.X - this.Orb.Transform.WorldTranslation.X) * (this.PlayerPosition.X - this.Orb.Transform.WorldTranslation.X) 
-                + (this.PlayerPosition.Y - this.Orb.Transform.WorldTranslation.Y) * (this.PlayerPosition.Y - this.Orb.Transform.WorldTranslation.Y);
-            
-                if (orbDistance >= 80)
-                {
-                    this.Phase = 2;
-                }
-                
-                if (this.Phase == 2)
-                {
-                    direction = this.PlayerPosition - this.Orb.Transform.WorldTranslation;
-                    this.Orb.Transform.Translation += direction * 0.1;
-                }
-            }
+        if(this.Phase == 1)
+        {
+            this.ReturnToPlayer();
+        }
+        else
+        {
+            this.MoveInDirection();
+        }
     }
 }
