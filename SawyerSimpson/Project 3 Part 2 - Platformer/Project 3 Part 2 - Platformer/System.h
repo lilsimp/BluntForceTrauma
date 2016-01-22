@@ -13,7 +13,9 @@ History
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-void System_Initialize(void);
+#include "AEEngine.h"
+
+int System_Initialize(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show);
 
 void System_Exit(void);
 

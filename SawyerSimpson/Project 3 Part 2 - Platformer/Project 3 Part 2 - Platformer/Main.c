@@ -10,13 +10,14 @@ History
 � Copyright 1996-2016, DigiPen Institute of Technology (USA). All rights reserved.
 ----------------------------------------------------------------------------*/
 
+#include "AEEngine.h"
 #include "GameStateManager.h"
 #include "GameStateList.h"
 #include "System.h"
 
-int main(void) {
-	/* Initialize the system*/
-	System_Initialize();
+int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show) {	/* Initialize the system*/
+	if (System_Initialize(instanceH, prevInstanceH, command_line, show) == 1)
+		return 0;
 
 	/* Initialize the GSM */
 	GSM_Initialize(LEVEL_1);
