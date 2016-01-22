@@ -1,0 +1,28 @@
+class OrbCollision : ZilchComponent
+{
+    var OrbController : Cog;
+
+    function Initialize(init : CogInitializer)
+    {   
+        this.OrbController = this.Owner.Space.FindObjectByName("Bob");
+         Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+       
+        // Get the object we collided with:
+        var otherObject = event.OtherObject;
+        
+        if (this.OrbController != null)
+        this.OrbController.OrbProjectile.Phase = 2;
+            
+        if (otherObject.Name == "Player")
+        {
+            if (this.OrbController != null)
+            this.OrbController.OrbProjectile.Orb.Destroy();
+        }
+            
+    }
+       
+}

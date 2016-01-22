@@ -1,10 +1,26 @@
+/*------------------------------------------------------------------/
+File Name: Particles
+Author : Josh Ibrahim
+Creation Date: 1/14/2016
+Purpouse: Prototype for the Combat System: Punch Mechanic.
+-------------------------------------------------------------------*/
 class PlayerPunches : ZilchComponent
 {
-    //punch destroy
-    var Timer : Real = 0.7;
+    //punch objects
     var Punch : Cog = null;
+    var Punch2 : Cog = null;
+    //archetypes
+    var Arch1: Archetype = Archetype.Punch;
+    var Arch2: Archetype = Archetype.Punch2;
+    
+    
+    //player location
+    var PlayerPosition : Real3;
+    //to switch between punches
+    var Switch: Real = 0; 
+        
     [Property]
-    var MaxPunchDistance : Real = 2;
+    var MaxPunchDistance : Real = 10;
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -14,39 +30,61 @@ class PlayerPunches : ZilchComponent
     function OnLogicUpdate(event : UpdateEvent)
     {
         //spawn Punch object variables
-        var playerWorldPosition = this.Owner.Transform.WorldTranslation;
+        this.PlayerPosition = this.Owner.Transform.WorldTranslation;
         var mousePosition = this.LevelSettings.CameraViewport.ScreenToWorldZPlane(Zero.Mouse.ScreenPosition, 0); // get real3 AND MOUSE POSITION
         var direction = mousePosition - this.Owner.Transform.WorldTranslation;
-        var playerDir = this.Owner.RigidBody.Velocity;
-        
+    
         direction = Math.Normalize(direction);
         
-        
-        if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && this.Punch == null)
+        //spawn punch
+        if (this.Switch == 0)
         {
-            
-           var spawnObject = Archetype.Punch;
-    
-           //vector variables
-           var velocity = Real3(1,1,1);
-           
-            //spawn punch
-            this.Punch  = this.Space.CreateAtPosition(spawnObject, playerWorldPosition + (direction * 0.7) ); // spawns punches
+            if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && this.Punch == null)
+            {
+                
+                this.Punch  = this.Space.CreateAtPosition(this.Arch1, this.PlayerPosition + (direction * 0.7) ); // spawns punches
+            }
+        }
+        else if (this.Switch == 1)
+        { 
+              if(Zero.Mouse.IsButtonDown(MouseButtons.Right) && this.Punch2 == null)
+            {      
+                this.Punch2  = this.Space.CreateAtPosition(this.Arch2, this.PlayerPosition + (direction * 0.8) ); // spawns  second punch
+            }
         }
         
-        if (this.Punch != null)
+        if (this.Switch == 0)
         {
+            this.Punch2MaxDistance(this.Punch, this.PlayerPosition, direction, this.MaxPunchDistance);
+            this.Switch = 1;
+        }
+        
+        else
+        {
+            this.Punch2MaxDistance(this.Punch2, this.PlayerPosition, direction, this.MaxPunchDistance+5);
+            this.Switch = 0;
+        }
+        
+    }
+    
+    //function takes a an archetype sends it in the direction specfied and destroys it at a max distance.
+    function Punch2MaxDistance(punchArc : Cog, playerPosition : Real3, direction : Real3, maxPunchDistance : Real)
+    {
+        
+        if (punchArc != null )
+        {
+            punchArc.RigidBody.Velocity += direction;
+        
+            //distance formula to compute distance between player and the
+            var punchDistance = (playerPosition.X - punchArc.Transform.WorldTranslation.X) * (playerPosition.X - punchArc.Transform.WorldTranslation.X) 
+            + (playerPosition.Y - punchArc.Transform.WorldTranslation.Y) * (playerPosition.Y - punchArc.Transform.WorldTranslation.Y);
             
-            this.Punch.RigidBody.Velocity += direction / 3;
-            
-            
-            var punchDistance = (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) * (playerWorldPosition.X - this.Punch.Transform.WorldTranslation.X) + (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y) * (playerWorldPosition.Y - this.Punch.Transform.WorldTranslation.Y);
-            
-             
-            if ( punchDistance >= this.MaxPunchDistance)
+            if (punchDistance >= maxPunchDistance)
             {
-                    this.Punch.Destroy();
-            }
+                punchArc.Destroy();
+            } 
         }
     }
 }
+    
+ 

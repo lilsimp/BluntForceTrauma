@@ -6,8 +6,8 @@ Cog =
 		string ProjectOwner = "",
 		string DefaultLevel = "Level",
 		string ProjectSpace = "Space",
-		string ProjectFolder = "C:\Users\jesse.s\Desktop\Particles",
-		uint ProjectEngineRevision = 12494,
+		string ProjectFolder = "C:\Users\Points\Desktop\BluntForceTrauma\ZeroPrototyping\Particles",
+		uint ProjectEngineRevision = 12624,
 		bool AutoTakeProjectScreenshot = true,
 	},
 	EditorSettings = 

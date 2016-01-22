@@ -3,6 +3,6 @@ TextContent =
 	ZilchScriptBuilder = 
 	{
 		string Name = "PlayerPunches",
-		uint64 ResourceId = 56a105ec16aeec4f,
+		uint64 ResourceId = 569a19fbf85fb7f2,
 	},
 },

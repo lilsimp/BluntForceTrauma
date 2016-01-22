@@ -6,11 +6,11 @@ Cog =
 	},
 	Named = 
 	{
-		string Name = "Punch",
+		string Name = "Punch2",
 	},
 	Archetyped = 
 	{
-		string Name = "569a04c9cc116ef7:Punch",
+		string Name = "569c682f74a9f519:Punch2",
 	},
 	Transform = 
 	{
@@ -24,7 +24,7 @@ Cog =
 		bool VisibilityCulling = true,
 		bool VisibilityEvents = true,
 		bool CastShadows = false,
-		Vec4 Color = [0, 0.73720026, 0.970000029, 0.999899983],
+		Vec4 Color = [0, 0.4599998, 1, 0.999899983],
 		BlendMode BlendMode = Alpha,
 		SpriteGeometryMode GeometryMode = ZPlane,
 		string SpriteLayer = "52ad5fa30d7fcd50:DefaultSpriteLayer",

@@ -103,7 +103,7 @@ Level =
 		},
 		Transform = 
 		{
-			Vec3 Translation = [-1.05869091, -0.94474715, 50],
+			Vec3 Translation = [5.45693111, -0.324151993, 50],
 			Vec3 Scale = [1, 1, 1],
 			Quat Rotation = [-0, -1.09278471e-008, 0, 1],
 		},
@@ -115,7 +115,7 @@ Level =
 			float FieldOfView = 45,
 			float NearPlane = 0.5,
 			float FarPlane = 500,
-			float Size = 24.4280453,
+			float Size = 23.8171711,
 		},
 		EditorCameraController = 
 		{
@@ -123,7 +123,7 @@ Level =
 			float LookDistance = 50,
 			float VerticalAngle = 0,
 			float HorizontalAngle = 0,
-			Vec3 LookTarget = [-1.05869091, -0.94474715, 8.99186645e-008],
+			Vec3 LookTarget = [5.45693111, -0.324151993, 0],
 			float MoveSensitivity = 1,
 		},
 		EditorRenderer = 
@@ -199,18 +199,18 @@ Level =
 		{
 			Vec3 StartingPos = [0, 0, 0],
 		},
+		OrbProjectile = 
+		{
+		},
 		PlayerController = 
 		{
 			Enum LeftInput = A,
 			Enum RightInput = D,
-			Enum JumpInput = W,
-			float MaxSpeed = 4,
+			Enum JumpInput = Space,
+			float MaxSpeed = 8,
 			float Acceleration = 0.200000003,
-			float JumpAcceleration = 2,
-			float MaxJumpSpeed = 15,
-		},
-		OrbProjectile = 
-		{
+			float JumpAcceleration = 4,
+			float MaxJumpSpeed = 100,
 		},
 		Hierarchy = 
 		{

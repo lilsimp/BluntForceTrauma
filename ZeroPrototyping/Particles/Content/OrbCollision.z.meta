@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "OrbCollision",
+		uint64 ResourceId = 569d6ab11b455526,
+	},
+},

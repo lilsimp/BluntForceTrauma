@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "OrbProjectile",
+		uint64 ResourceId = 569c6c93f73e97ca,
+	},
+},

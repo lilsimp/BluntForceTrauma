@@ -316,10 +316,6 @@ Level =
 		{
 			Vec3 StartingPos = [-9, 3, 0],
 		},
-		PlayerPunches = 
-		{
-			float MaxPunchDistance = 2,
-		},
 		PlayerController = 
 		{
 			Enum LeftInput = A,
@@ -329,6 +325,13 @@ Level =
 			float Acceleration = 0.400000006,
 			float JumpAcceleration = 4,
 			float MaxJumpSpeed = 15,
+		},
+		PlayerPunches = 
+		{
+			float MaxPunchDistance = 2,
+		},
+		OrbProjectile = 
+		{
 		},
 	},
 	Cog = 

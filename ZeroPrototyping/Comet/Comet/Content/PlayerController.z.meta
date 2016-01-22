@@ -3,13 +3,6 @@ TextContent =
 	ZilchScriptBuilder = 
 	{
 		string Name = "PlayerController",
-		uint64 ResourceId = 566e339f08960364,
-	},
-	ContentTags = 
-	{
-		Array Tags = 
-		[
-			"Package",
-		],
+		uint64 ResourceId = 56a113add28e662f,
 	},
 },
