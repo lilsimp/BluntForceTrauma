@@ -60,11 +60,11 @@ typedef struct GameObjInst {
 
 GameObj* AllGameObjects(int numObjects);
 GameObjInst* AllGameObjectInsts(int numInsts);
-GameObjInst* gameObjInstCreate(unsigned int type, float scale, Vector2D* pPos, Vector2D* pVel, float dir, enum STATE startState);
+GameObjInst* gameObjInstCreate(GameObjInst* sGameObjInstList, GameObj* sGameObjList, unsigned int type, float scale, Vector2D* pPos, Vector2D* pVel, float dir, enum STATE startState);
 void gameObjInstDestroy(GameObjInst* pInst);
 
-void make_triangle_object(float x, float y, int color);
-void make_square_object(float x, float y, int color);
-void make_circle_object(int parts, int color);
+void make_triangle_object(GameObj* pObj, float x, float y, int color);
+void make_square_object(GameObj* pObj, float x, float y, int color);
+void make_circle_object(GameObj* pObj, int parts, int color);
 
 #endif

@@ -11,8 +11,11 @@ History
 ----------------------------------------------------------------------------*/
 
 #include "BinaryMap.h"
+#include "System.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+extern FILE* output;
 
 /*The number of horizontal elements*/
 static unsigned int BINARY_MAP_WIDTH;
@@ -134,22 +137,22 @@ void FreeMapData(MapData* map) {
 void PrintRetrievedInformation(MapData* map) {
 	int i, j;
 
-	printf("Width: %i\n", map->width);
-	printf("Height: %i\n", map->height);
+	fprintf(output, "Width: %i\n", map->width);
+	fprintf(output, "Height: %i\n", map->height);
 
-	printf("Map Data:\n");
+	fprintf(output, "Map Data:\n");
 	for(j = map->height - 1; j >= 0; --j)	{
 		for(i = 0; i < map->width; ++i)
-			printf("%i ", map->Map[i][j]);
+			fprintf(output, "%i ", map->Map[i][j]);
 
-		printf("\n");
+		fprintf(output, "\n");
 	}
 
-	printf("\n\nBinary Collision Data:\n");
+	fprintf(output, "\n\nBinary Collision Data:\n");
 	for(j = map->height - 1; j >= 0; --j) {
 		for(i = 0; i < map->width; ++i)
-			printf("%i ", map->BinaryCollisionArray[i][j]);
+			fprintf(output, "%i ", map->BinaryCollisionArray[i][j]);
 
-		printf("\n");
+		fprintf(output, "\n");
 	}
 }

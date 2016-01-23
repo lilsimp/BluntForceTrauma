@@ -15,6 +15,8 @@ History
 
 FILE* output;
 
+static AESysInitInfo sysInitInfo;
+
 /***************************************************************************/
 /*!
 
@@ -25,19 +27,18 @@ FILE* output;
 /***************************************************************************/
 int System_Initialize(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show) {
 	/* Initialize the system */
-	AESysInitInfo sysInitInfo;
-
-	sysInitInfo.mCreateWindow = 1;
-	sysInitInfo.mWindowHandle = NULL;
-	sysInitInfo.mAppInstance = instanceH;
-	sysInitInfo.mShow = show;
-	sysInitInfo.mWinWidth = 1280;
-	sysInitInfo.mWinHeight = 800;
+	sysInitInfo.mCreateWindow  = 1;
+	sysInitInfo.mWindowHandle  = NULL;
+	sysInitInfo.mAppInstance   = instanceH;
+	sysInitInfo.mShow          = show;
+	sysInitInfo.mWinWidth      = 1280;
+	sysInitInfo.mWinHeight     = 800;
 	sysInitInfo.mCreateConsole = 1;
-	sysInitInfo.mMaxFrameRate = 60;
-	sysInitInfo.mpWinCallBack = NULL;
-	sysInitInfo.mClassStyle = CS_HREDRAW | CS_VREDRAW;
-	sysInitInfo.mWindowStyle = WS_OVERLAPPEDWINDOW;
+	sysInitInfo.mMaxFrameRate  = 60;
+	sysInitInfo.mpWinCallBack  = NULL;
+	sysInitInfo.mClassStyle    = CS_HREDRAW | CS_VREDRAW;
+	sysInitInfo.mWindowStyle    = WS_OVERLAPPEDWINDOW;
+
 	sysInitInfo.mHandleWindowMessages = 1;
 
 	if (0 == AESysInit(&sysInitInfo))

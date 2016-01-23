@@ -2,21 +2,16 @@
 
 #define FLAG_ACTIVE      0x00000001
 
-static GameObj     *sGameObjList;
-static GameObjInst *sGameObjInstList;
-
 GameObj* AllGameObjects(GameObj* gmObj, int numObjects) {
 	gmObj = (GameObj *)malloc(numObjects * sizeof(GameObj));
-	sGameObjList = gmObj;
 	return gmObj;
 }
 GameObjInst* AllGameObjectInsts(GameObjInst* gmObjInst, int numInsts) {
 	gmObjInst = (GameObj *)malloc(numInsts * sizeof(GameObj));
-	sGameObjList = gmObjInst;
 	return gmObjInst;
 }
 
-GameObjInst* gameObjInstCreate(unsigned int type, float scale, Vector2D* pPos, Vector2D* pVel, float dir, enum STATE startState) {
+GameObjInst* gameObjInstCreate(GameObjInst* sGameObjInstList, GameObj* sGameObjList, unsigned int type, float scale, Vector2D* pPos, Vector2D* pVel, float dir, enum STATE startState) {
 	unsigned int i;
 	Vector2D zero = { 0.0f, 0.0f };
 
@@ -54,7 +49,22 @@ void gameObjInstDestroy(GameObjInst* pInst) {
 	pInst->flag = 0;
 }
 
-void make_square_object(float x, float y, int color) {
+void make_triangle_object(GameObj* pObj, float x, float y, int color) {
+	AEGfxMeshStart();
+
+	/* 1st argument: X    */
+	/* 2nd argument: Y    */
+	/* 3rd argument: ARGB */
+	AEGfxTriAdd(
+		-x, -y, color, 0.0f, 0.0f,
+		x, -y, color, 0.0f, 0.0f,
+		-x, y, color, 0.0f, 0.0f);
+	  pObj->pMesh = AEGfxMeshEnd();
+
+	  pObj->pMesh = AEGfxMeshEnd();
+}
+
+void make_square_object(GameObj* pObj, float x, float y, int color) {
 	AEGfxMeshStart();
 
 	/* 1st argument: X */
@@ -69,9 +79,11 @@ void make_square_object(float x, float y, int color) {
 		-x,   y, color, 0.0f, 0.0f,
 		 x,  -y, color, 0.0f, 0.0f,
 		 x,   y, color, 0.0f, 0.0f);
+
+	pObj->pMesh = AEGfxMeshEnd();
 }
 
-void make_circle_object(int parts, int color) {
+void make_circle_object(GameObj* pObj, int parts, int color) {
 	float CircleAngleStep;
 	int i;
 	AEGfxMeshStart();
@@ -88,16 +100,6 @@ void make_circle_object(int parts, int color) {
 		    cosf(i*2*PI/parts)*0.5f,      sinf(i*2*PI/parts)*0.5f, color, 0.0f, 0.0f,
 		cosf((i+1)*2*PI/parts)*0.5f,  sinf((i+1)*2*PI/parts)*0.5f, color, 0.0f, 0.0f);
 	}
-}
 
-void make_triangle_object(float x, float y, int color) {
-	AEGfxMeshStart();
-
-	/* 1st argument: X */
-	/* 2nd argument: Y */
-	/* 3rd argument: ARGB */
-	AEGfxTriAdd(
-		-x, -y, color, 0.0f, 0.0f,
-		 x, -y, color, 0.0f, 0.0f,
-		-x,  y, color, 0.0f, 0.0f);
+	pObj->pMesh = AEGfxMeshEnd();
 }

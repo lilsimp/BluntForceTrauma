@@ -76,54 +76,52 @@ void Level1_Load(void) {
 
   current_lives = Player_Lives;
 
-  AllGameObjects(sGameObjList, GAME_OBJ_NUM_MAX);
-  AllGameObjectInsts(sGameObjInstList, GAME_OBJ_INST_NUM_MAX);
+  /*
+  sGameObjList = AllGameObjects(sGameObjList, GAME_OBJ_NUM_MAX);
+  sGameObjInstList = AllGameObjectInsts(sGameObjInstList, GAME_OBJ_INST_NUM_MAX);
+  */
+
+  sGameObjList = (GameObj *)calloc(GAME_OBJ_NUM_MAX, sizeof(GameObj));
+  sGameObjInstList = (GameObjInst *)calloc(GAME_OBJ_INST_NUM_MAX, sizeof(GameObjInst));
 
   sGameObjNum = 0;
 
   /* Creating the black object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_EMPTY;
-  make_square_object(0.5f, 0.5f, 0xFF000000);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_square_object(pObj, 0.5f, 0.5f, 0xFF000000);
 
   /* Creating the white object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_COLLISION;
-  make_square_object(0.5f, 0.5f, 0xFFFFFFFF);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_square_object(pObj, 0.5f, 0.5f, 0xFFFFFFFF);
 
   /* Creating the Player object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_PLAYER;
-  make_square_object(0.5f, 0.5f, 0xFF0000FF);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_square_object(pObj, 0.5f, 0.5f, 0xFF0000FF);
 
   /* Creating the enemey1 object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_ENEMY1;
-  make_square_object(0.5f, 0.5f, 0xFFFF0000);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_square_object(pObj, 0.5f, 0.5f, 0xFFFF0000);
 
   /* Creating the Coin object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_COIN;
-  make_circle_object(12, 0xFFFFFF00);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_circle_object(pObj, 12, 0xFFFFFF00);
 
   /* MAKING PARTICLES NOW */
 
   /* Creating the Jump Particles */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_BOOSTER;
-  make_triangle_object(0.5f, 0.5f, 0xFFFF0000);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_triangle_object(pObj, 0.5f, 0.5f, 0xFFFF0000);
 
   /* Creating the Player Explosion Particles */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_PLAYER_BITS;
-  make_square_object(0.5f, 0.5f, 0xFF0000FF, TYPE_OBJECT_PLAYER_BITS);
-  pObj->pMesh = AEGfxMeshEnd();
+  make_square_object(pObj, 0.5f, 0.5f, 0xFF0000FF, TYPE_OBJECT_PLAYER_BITS);
 
   if(!ImportMapDataFromFile("Inputs/Level1_Map.txt", &Level1_Map))
     GSM_NEXT = QUIT;
@@ -146,6 +144,8 @@ void Level1_Load(void) {
   Matrix2DTranslate(&mapTrans, (-Level1_Map.width/2.0f), (-Level1_Map.height/2.0f));
   Matrix2DScale(&mapScale, 30.0f, 30.0f);
   Matrix2DConcat(&MapTransform, &mapScale, &mapTrans);
+
+  PrintRetrievedInformation(&Level1_Map);
 
   fprintf(output, "Level1:Load\n");
 }
@@ -197,11 +197,11 @@ void Level1_Initialize(void) {
 
       switch(Level1_Map.BinaryCollisionArray[i][j]) {
         case TYPE_OBJECT_COLLISION:
-          gameObjInstCreate(TYPE_OBJECT_COLLISION, 1.0f, &pos, &vel, 0, STATE_NONE);
+			gameObjInstCreate(sGameObjInstList, sGameObjList, TYPE_OBJECT_COLLISION, 1.0f, &pos, &vel, 0, STATE_NONE);
           break;
 
         case TYPE_OBJECT_EMPTY:
-          gameObjInstCreate(TYPE_OBJECT_EMPTY, 1.0f, &pos, &vel, 0, STATE_NONE);
+			gameObjInstCreate(sGameObjInstList, sGameObjList, TYPE_OBJECT_EMPTY, 1.0f, &pos, &vel, 0, STATE_NONE);
           break;
       }
     }
@@ -216,22 +216,21 @@ void Level1_Initialize(void) {
 
       switch(Level1_Map.Map[i][j]) {
         case TYPE_OBJECT_PLAYER:
-          pPlayer = gameObjInstCreate(TYPE_OBJECT_PLAYER, 1.0f, &pos, &vel, 0, STATE_NONE);
+			pPlayer = gameObjInstCreate(sGameObjInstList, sGameObjList, TYPE_OBJECT_PLAYER, 1.0f, &pos, &vel, 0, STATE_NONE);
           Player_Initial_X = i + 0.5f;
           Player_Initial_Y = j + 0.5f;
           current_health   = Player_Health;
           break;
 
         case TYPE_OBJECT_ENEMY1:
-          gameObjInstCreate(TYPE_OBJECT_ENEMY1, 1.0f, &pos, &vel, 0, STATE_GOING_LEFT);
+			gameObjInstCreate(sGameObjInstList, sGameObjList, TYPE_OBJECT_ENEMY1, 1.0f, &pos, &vel, 0, STATE_GOING_LEFT);
           break;
       }
     }
 
+	current_health = Player_Health;
 
-  current_health = Player_Health;
-
-  fprintf(output, "Level1:Initialize\n");
+	fprintf(output, "Level1:Initialize\n");
 }
 
 /***************************************************************************/
@@ -463,8 +462,6 @@ void Level1_Update(void) {
     jumpeParticleCreate();
   */
 
-  if (!(--current_health))
-    GSM_NEXT = LEVEL_2;
   fprintf(output, "Level1:Update\n");
 }
 

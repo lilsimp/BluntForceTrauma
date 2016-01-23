@@ -22,7 +22,7 @@ History
 #include "Input.h"
 
 #define SET_ALL_LEVELS(NUM) \
-	ALL_LEVELS[NUM - 1].pLoad   = Level##NUM##_Load; \
+  ALL_LEVELS[NUM - 1].pLoad   = Level##NUM##_Load; \
   ALL_LEVELS[NUM - 1].pInit   = Level##NUM##_Initialize; \
   ALL_LEVELS[NUM - 1].pUpdate = Level##NUM##_Update; \
   ALL_LEVELS[NUM - 1].pDraw   = Level##NUM##_Draw; \
