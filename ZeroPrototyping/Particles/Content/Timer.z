@@ -1,0 +1,37 @@
+class Timer : ZilchComponent
+{
+    var Time : Real = 0;
+    var Sec : Boolean = false;
+    var Stop : Boolean =  false;
+    var Store : Real = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Owner.Transform.Translation = this.Owner.Space.FindObjectByName("Camera").Transform.Translation + Real3(-8, -7, -30);
+        if(this.Stop == false)
+        {
+            if(this.Owner.Space.FindObjectByName("Player").Collided.Reset == true)
+            {
+                this.Time = 0;
+                this.Owner.Space.FindObjectByName("Player").Collided.Reset = false;
+                this.Sec = true;
+            }
+            
+            this.Time += event.Dt;
+            
+            if(this.Sec == true)
+            {
+                this.Owner.SpriteText.Text = "`Math.Abs(this.Time -3) `";
+            }
+            else
+            {
+                this.Owner.SpriteText.Text = "`this.Time`";
+            }
+        }
+    }
+}

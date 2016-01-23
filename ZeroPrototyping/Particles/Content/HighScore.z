@@ -1,0 +1,19 @@
+class HighScore : ZilchComponent
+{
+    var Highscore : Real = 0;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Owner.Transform.Translation = this.Owner.Space.FindObjectByName("Camera").Transform.Translation + Real3(-8, -2, -30);
+        
+        if(this.Owner.Space.FindObjectByName("Timer").Timer.Time > this.Highscore)
+        {
+            this.Highscore = this.Owner.Space.FindObjectByName("Timer").Timer.Time;
+            this.Owner.SpriteText.Text = "`this.Highscore`";
+        }
+    }
+}

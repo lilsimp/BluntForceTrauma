@@ -6,6 +6,8 @@ class Collided : ZilchComponent
     var DeathTimer : Real = 3;
     var Locked : Integer = 0;
     var LockedPos : Real3 = Real3(0,0,0);
+    var Reset : Boolean = false;
+    
     function Initialize(init : CogInitializer)
     {
         Zero.Connect(this.Owner, Events.CollisionStarted,     this.OnCollisionStarted);
@@ -46,6 +48,12 @@ class Collided : ZilchComponent
             this.Space.LevelSettings.Particles.DeathParticles(Real4(0,0,0,0), 5, this.Owner.Transform.Translation, 8, this.Owner.RigidBody.Velocity);
             this.LockedPos = this.Owner.Transform.Translation;
             this.Locked = 1;
+            this.Reset = true;
+        }
+        
+        if (otherObject.Name == "Finish")
+        {
+            this.Owner.Space.FindObjectByName("Timer").Timer.Stop = true;
         }
     }
 }
