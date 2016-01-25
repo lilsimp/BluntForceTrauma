@@ -28,8 +28,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	sysInitInfo.mAppInstance		= instanceH;
 	sysInitInfo.mShow				= show;
-	sysInitInfo.mWinWidth			= 800; 
-	sysInitInfo.mWinHeight			= 600;
+	sysInitInfo.mWinWidth			= 1900; 
+	sysInitInfo.mWinHeight			= 1000;
 	sysInitInfo.mCreateConsole		= 1;
 	sysInitInfo.mMaxFrameRate		= 60;
 	sysInitInfo.mpWinCallBack		= NULL;//MyWinCallBack;

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{bcb15b36-6ebc-4a39-b02b-85d280cccfe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{ee1ae379-5527-4b89-9da2-59ef16364c7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BinaryMap.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState_Asteroids.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateList.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateMgr.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level1.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Math2D.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix2D.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix4.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Objects.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Point4.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vector2D.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vector4.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WorldSettings.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BinaryMap.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState_Asteroids.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateManager.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateMgr.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level1.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math2D.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Matrix2D.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector2D.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
