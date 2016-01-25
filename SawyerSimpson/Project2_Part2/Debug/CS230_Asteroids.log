@@ -1,0 +1,37 @@
+﻿Build started 1/24/2016 7:06:41 PM.
+     1>Project "C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\CS230_Asteroids.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"..\..\..\Alpha_Engine (With Textures)\Alpha_Engine" /IInclude /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /Gm /EHsc /RTC1 /MD /Zp4 /GS /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt src\GameState_Asteroids.c
+         GameState_Asteroids.c
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\include\vector2d.h(17): warning C4005: 'PI' : macro redefinition
+                 c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\include\aeexport.h(20) : see previous definition of 'PI'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(168): warning C4101: 'CircleAngleStep' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(169): warning C4101: 'i' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(342): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(360): warning C4244: 'function' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(368): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(369): warning C4305: 'function' : truncation from 'double' to 'f32'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(374): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(375): warning C4305: 'function' : truncation from 'double' to 'f32'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(393): warning C4013: 'GameObjInstCreate' undefined; assuming extern returning int
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(393): warning C4047: '=' : 'GameObjectInstance *' differs in levels of indirection from 'int'
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(356): warning C4101: 'current_speed' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(551): warning C4101: 'frameTime' : unreferenced local variable
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(731): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(784): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\sawyer.simpson\desktop\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(345): warning C4700: uninitialized local variable 'current_speed' used
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\Debug\CS230_Asteroids.exe" /NOLOGO /LIBPATH:"..\..\..\Alpha_Engine (With Textures)\lib" Alpha_Engine.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\Debug\CS230_Asteroids.pdb" /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\Debug\CS230_Asteroids.lib" /MACHINE:X86 /SAFESEH Debug\GameStateMgr.obj
+         Debug\GameState_Asteroids.obj
+         Debug\main.obj
+         Debug\Math2D.obj
+         Debug\Matrix2D.obj
+         Debug\Vector2D.obj
+     1>GameStateMgr.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+     1>GameState_Asteroids.obj : error LNK2019: unresolved external symbol _GameObjInstCreate referenced in function _GameStateAsteroidsUpdate
+     1>C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\Debug\CS230_Asteroids.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "C:\Users\sawyer.simpson\Desktop\bluntforcetrauma\SawyerSimpson\Project2_Part2\CS230_Asteroids.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.17

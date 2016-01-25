@@ -49,7 +49,7 @@ void gameObjInstDestroy(GameObjInst* pInst) {
 	pInst->flag = 0;
 }
 
-void make_triangle_object(GameObj* pObj, float x, float y, int color) {
+AEGfxVertexList* make_triangle_object(float x, float y, int color) {
 	AEGfxMeshStart();
 
 	/* 1st argument: X    */
@@ -61,10 +61,10 @@ void make_triangle_object(GameObj* pObj, float x, float y, int color) {
 		-x, y, color, 0.0f, 0.0f);
 	  pObj->pMesh = AEGfxMeshEnd();
 
-	  pObj->pMesh = AEGfxMeshEnd();
+	  return AEGfxMeshEnd();
 }
 
-void make_square_object(GameObj* pObj, float x, float y, int color) {
+AEGfxVertexList* make_rectangle_object(float x, float y, int color) {
 	AEGfxMeshStart();
 
 	/* 1st argument: X */
@@ -80,10 +80,12 @@ void make_square_object(GameObj* pObj, float x, float y, int color) {
 		 x,  -y, color, 0.0f, 0.0f,
 		 x,   y, color, 0.0f, 0.0f);
 
-	pObj->pMesh = AEGfxMeshEnd();
+	return AEGfxMeshEnd();
 }
 
-void make_circle_object(GameObj* pObj, int parts, int color) {
+AEGfxVertexList* make half
+
+AEGfxVertexList* make_circle_object(int parts, int color) {
 	float CircleAngleStep;
 	int i;
 	AEGfxMeshStart();
@@ -101,5 +103,5 @@ void make_circle_object(GameObj* pObj, int parts, int color) {
 		cosf((i+1)*2*PI/parts)*0.5f,  sinf((i+1)*2*PI/parts)*0.5f, color, 0.0f, 0.0f);
 	}
 
-	pObj->pMesh = AEGfxMeshEnd();
+	return AEGfxMeshEnd();
 }

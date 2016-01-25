@@ -89,39 +89,39 @@ void Level1_Load(void) {
   /* Creating the black object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_EMPTY;
-  make_square_object(pObj, 0.5f, 0.5f, 0xFF000000);
+  pObj->pMesh = make_rectangle_object(0.5f, 0.5f, 0xFF000000);
 
   /* Creating the white object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_COLLISION;
-  make_square_object(pObj, 0.5f, 0.5f, 0xFFFFFFFF);
+  pObj->pMesh = make_rectangle_object(0.5f, 0.5f, 0xFFFFFFFF);
 
   /* Creating the Player object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_PLAYER;
-  make_square_object(pObj, 0.5f, 0.5f, 0xFF0000FF);
+  pObj->pMesh = make_rectangle_object(0.5f, 0.5f, 0xFF0000FF);
 
   /* Creating the enemey1 object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_ENEMY1;
-  make_square_object(pObj, 0.5f, 0.5f, 0xFFFF0000);
+  pObj->pMesh = make_rectangle_object(0.5f, 0.5f, 0xFFFF0000);
 
   /* Creating the Coin object */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_COIN;
-  make_circle_object(pObj, 12, 0xFFFFFF00);
+  pObj->pMesh = make_circle_object(12, 0xFFFFFF00);
 
   /* MAKING PARTICLES NOW */
 
   /* Creating the Jump Particles */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_BOOSTER;
-  make_triangle_object(pObj, 0.5f, 0.5f, 0xFFFF0000);
+  pObj->pMesh = make_triangle_object(0.5f, 0.5f, 0xFFFF0000);
 
   /* Creating the Player Explosion Particles */
   pObj    = sGameObjList + sGameObjNum++;
   pObj->type  = TYPE_OBJECT_PLAYER_BITS;
-  make_square_object(pObj, 0.5f, 0.5f, 0xFF0000FF, TYPE_OBJECT_PLAYER_BITS);
+  pObj->pMesh = make_rectangle_object(0.5f, 0.5f, 0xFF0000FF);
 
   if(!ImportMapDataFromFile("Inputs/Level1_Map.txt", &Level1_Map))
     GSM_NEXT = QUIT;
