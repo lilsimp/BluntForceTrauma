@@ -14,7 +14,6 @@
     <ClInclude Include="include\BinaryMap.h" />
     <ClInclude Include="include\GameStateList.h" />
     <ClInclude Include="include\GameStateManager.h" />
-    <ClInclude Include="include\GameStateMgr.h" />
     <ClInclude Include="include\GameState_Asteroids.h" />
     <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\Level.h" />
@@ -33,10 +32,8 @@
   <ItemGroup>
     <ClCompile Include="src\BinaryMap.c" />
     <ClCompile Include="src\GameStateManager.c" />
-    <ClCompile Include="src\GameStateMgr.c" />
     <ClCompile Include="src\GameState_Asteroids.c" />
     <ClCompile Include="src\Input.c" />
-    <ClCompile Include="src\Level1.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\Math2D.c" />
     <ClCompile Include="src\Matrix2D.c" />

@@ -80,21 +80,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameStateMgr.c" />
+    <ClCompile Include="src\BinaryMap.c" />
+    <ClCompile Include="src\GameStateManager.c" />
     <ClCompile Include="src\GameState_Asteroids.c" />
+    <ClCompile Include="src\Input.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\Math2D.c" />
     <ClCompile Include="src\Matrix2D.c" />
+    <ClCompile Include="src\Objects.c" />
+    <ClCompile Include="src\System.c" />
     <ClCompile Include="src\Vector2D.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BinaryMap.h" />
     <ClInclude Include="include\GameStateList.h" />
-    <ClInclude Include="include\GameStateMgr.h" />
+    <ClInclude Include="include\GameStateManager.h" />
     <ClInclude Include="include\GameState_Asteroids.h" />
+    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\Level.h" />
+    <ClInclude Include="include\Level1.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\Math2D.h" />
     <ClInclude Include="include\Matrix2D.h" />
-    <ClInclude Include="include\Matrix4.h" />
+    <ClInclude Include="include\Objects.h" />
+    <ClInclude Include="include\System.h" />
+    <ClInclude Include="include\WorldSettings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

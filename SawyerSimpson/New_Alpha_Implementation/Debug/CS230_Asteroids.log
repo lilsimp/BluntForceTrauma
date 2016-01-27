@@ -1,153 +1,16 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (CS230_Asteroids.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.c
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\main.c(29): warning C4013: 'GameStateMgrInit' undefined; assuming extern returning int
-  System.c
-  Objects.c
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\vector2d.h(17): warning C4005: 'PI': macro redefinition
-  c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\aeexport.h(20): note: see previous definition of 'PI'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\objects.c(229): warning C4305: '=': truncation from 'double' to 'float'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\objects.c(233): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\objects.c(234): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\objects.c(264): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Level1.c
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\vector2d.h(17): warning C4005: 'PI': macro redefinition
-  c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\aeexport.h(20): note: see previous definition of 'PI'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(30): error C2143: syntax error: missing '{' before '*'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(34): error C2143: syntax error: missing '{' before '*'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(42): error C2143: syntax error: missing '{' before '*'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(53): error C2143: syntax error: missing ')' before '*'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(53): error C2143: syntax error: missing '{' before '*'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(53): error C2059: syntax error: ')'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(66): error C2065: 'GameObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(66): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(66): warning C4552: '*': operator has no effect; expected operator with side-effect
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(84): error C2065: 'GameObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(84): error C2059: syntax error: ')'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(85): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(85): error C2059: syntax error: ')'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(90): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(90): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(91): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(91): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(91): error C2065: 'TYPE_OBJECT_EMPTY': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(92): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(92): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(92): warning C4013: 'make_rectangle_object' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(95): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(95): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(96): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(96): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(96): error C2065: 'TYPE_OBJECT_COLLISION': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(97): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(97): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(100): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(100): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(101): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(101): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(101): error C2065: 'TYPE_OBJECT_PLAYER': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(102): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(102): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(105): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(105): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(106): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(106): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(106): error C2065: 'TYPE_OBJECT_ENEMY1': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(107): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(107): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(110): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(110): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(111): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(111): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(111): error C2065: 'TYPE_OBJECT_COIN': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(112): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(112): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(112): warning C4013: 'make_circle_object' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(117): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(117): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(118): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(118): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(118): error C2065: 'TYPE_OBJECT_BOOSTER': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(119): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(119): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(119): warning C4013: 'make_triangle_object' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(122): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(122): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(123): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(123): error C2223: left of '->type' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(123): error C2065: 'TYPE_OBJECT_PLAYER_BITS': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(124): error C2065: 'pObj': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(124): error C2223: left of '->pMesh' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(163): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(163): error C2297: '*': illegal, right operand has type 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(199): error C2065: 'TYPE_OBJECT_COLLISION': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(200): warning C4013: 'gameObjInstCreate' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(200): error C2065: 'TYPE_OBJECT_COLLISION': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(203): error C2065: 'TYPE_OBJECT_EMPTY': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(204): error C2065: 'TYPE_OBJECT_EMPTY': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(218): error C2065: 'TYPE_OBJECT_PLAYER': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(219): error C2065: 'TYPE_OBJECT_PLAYER': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(219): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(220): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(221): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(225): error C2065: 'TYPE_OBJECT_ENEMY1': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(226): error C2065: 'TYPE_OBJECT_ENEMY1': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(199): error C2051: case expression not constant
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(203): error C2051: case expression not constant
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(218): error C2051: case expression not constant
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(225): error C2051: case expression not constant
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(246): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(246): error C2297: '*': illegal, right operand has type 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(281): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(283): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(286): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(288): error C2223: left of '->gridCollisionFlag' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(289): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(289): error C2065: 'JUMP_VELOCITY': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(301): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(301): error C2297: '*': illegal, right operand has type 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(304): error C2223: left of '->flag' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(307): error C2223: left of '->pObject' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(307): error C2065: 'TYPE_OBJECT_COLLISION': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(307): error C2065: 'TYPE_OBJECT_EMPTY': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(319): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(321): error C2223: left of '->pObject' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(321): error C2065: 'TYPE_OBJECT_ENEMY1': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(322): warning C4013: 'EnemyStateMachine' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(324): error C2223: left of '->pObject' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(324): error C2065: 'TYPE_OBJECT_BOOSTER': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(324): error C2065: 'TYPE_OBJECT_PLAYER_BITS': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(325): error C2223: left of '->counter' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(326): error C2223: left of '->counter' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(327): warning C4013: 'gameObjInstDestroy' undefined; assuming extern returning int
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(333): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(333): error C2297: '*': illegal, right operand has type 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(336): error C2223: left of '->flag' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(343): error C2223: left of '->posCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(343): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(344): error C2223: left of '->posCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(344): error C2223: left of '->velCurr' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(349): error C2065: 'GameObjInst': undeclared identifier
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(349): error C2297: '*': illegal, right operand has type 'int *'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(352): error C2223: left of '->flag' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(355): error C2223: left of '->pObject' must point to struct/union
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\level1.c(355): fatal error C1003: error count exceeds 100; stopping compilation
   GameState_Asteroids.c
 c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\vector2d.h(17): warning C4005: 'PI': macro redefinition
   c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\aeexport.h(20): note: see previous definition of 'PI'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(174): warning C4101: 'i': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(173): warning C4101: 'CircleAngleStep': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(349): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(360): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(369): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(370): warning C4305: 'function': truncation from 'double' to 'f32'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(375): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(376): warning C4305: 'function': truncation from 'double' to 'f32'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(389): warning C4101: 'spawnPoint': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(556): warning C4101: 'frameTime': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(749): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(802): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  GameStateManager.c
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\vector2d.h(17): warning C4005: 'PI': macro redefinition
-  c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\include\aeexport.h(20): note: see previous definition of 'PI'
-c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestatemanager.c(41): warning C4101: 'i': unreferenced local variable
-  Generating Code...
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(80): warning C4101: 'i': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(79): warning C4101: 'CircleAngleStep': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(258): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(269): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(278): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(279): warning C4305: 'function': truncation from 'double' to 'f32'
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(284): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(285): warning C4305: 'function': truncation from 'double' to 'f32'
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(298): warning C4101: 'spawnPoint': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(465): warning C4101: 'frameTime': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\new_alpha_implementation\src\gamestate_asteroids.c(511): warning C4020: 'GameObjectInstanceDestroy': too many actual parameters
+  CS230_Asteroids.vcxproj -> C:\BluntForceTrauma\SawyerSimpson\New_Alpha_Implementation\Debug\OrbitalGauntlet.exe

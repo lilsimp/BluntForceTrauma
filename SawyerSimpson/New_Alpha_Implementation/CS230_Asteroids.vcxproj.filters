@@ -21,9 +21,6 @@
     <ClInclude Include="include\GameStateManager.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameStateMgr.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Input.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -74,13 +71,7 @@
     <ClCompile Include="src\GameStateManager.c">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameStateMgr.c">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Input.c">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Level1.c">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.c">
@@ -92,13 +83,13 @@
     <ClCompile Include="src\Matrix2D.c">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Objects.c">
-      <Filter>Src</Filter>
-    </ClCompile>
     <ClCompile Include="src\System.c">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="src\Vector2D.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects.c">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

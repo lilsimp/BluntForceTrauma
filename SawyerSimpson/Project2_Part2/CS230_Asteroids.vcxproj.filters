@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\GameState_Asteroids.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Math2D.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Matrix2D.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector2D.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BinaryMap.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateManager.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\GameStateList.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState_Asteroids.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Math2D.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Matrix2D.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Objects.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BinaryMap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WorldSettings.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\main.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{f5bb42d0-2bee-421c-a9eb-9eb15ec0f430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4f669ee3-3a3c-4283-8927-bffab08d1864}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -23,15 +23,35 @@
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
 	// Initialize the system
-	if (!System_Initialize(instanceH, prevInstanceH, command_line, show))
+	AESysInitInfo sysInitInfo;
+
+	sysInitInfo.mAppInstance = instanceH;
+	sysInitInfo.mShow = show;
+	sysInitInfo.mWinWidth = 1900;
+	sysInitInfo.mWinHeight = 1000;
+	sysInitInfo.mCreateConsole = 1;
+	sysInitInfo.mMaxFrameRate = 60;
+	sysInitInfo.mpWinCallBack = NULL;//MyWinCallBack;
+	sysInitInfo.mClassStyle = CS_HREDRAW | CS_VREDRAW;
+	sysInitInfo.mWindowStyle = WS_OVERLAPPEDWINDOW;//WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+
+	sysInitInfo.mCreateWindow = 1;
+	sysInitInfo.mWindowHandle = NULL;
+	sysInitInfo.mHandleWindowMessages = 1;
+
+	if (!AESysInit(&sysInitInfo))
 		return 1;
 
-	GameStateMgrInit(LEVEL_1);
+	System_Initialize();
+
+	GSM_Initialize(LEVEL_1);
 
 	GSM_MainLoop();
 	
-	// free the system
 	System_Exit();
+
+	/* free the system */
+	AESysExit();
 
 	return 1;
 }

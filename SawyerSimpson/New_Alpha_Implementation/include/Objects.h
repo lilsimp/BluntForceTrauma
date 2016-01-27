@@ -5,11 +5,18 @@
 #include "AEEngine.h"
 #include "Matrix2D.h"
 
+#define FLAG_ACTIVE      0x00000001
+
 /* --------------------------------------------------------------------------- */
 
 enum OBJECT_TYPE {
 	OBJECT_TYPE_EMPTY,		  /* 0 */
 	OBJECT_TYPE_COLLISION,	  /* 1 */
+	OBJECT_TYPE_SHIP,
+	OBJECT_TYPE_BULLET,
+	OBJECT_TYPE_ASTEROID_SQUARE,
+	OBJECT_TYPE_ASTEROID_CIRCLE,
+	OBJECT_TYPE_HOMING_MISSILE,
 	OBJECT_TYPE_PLAYER,		  /* 2 */
 	OBJECT_TYPE_ENEMY1,		  /* 3 */
 	OBJECT_TYPE_PUNCH,        /* 4 */
@@ -46,7 +53,7 @@ typedef struct GameObjectInstance GameObjectInstance;
 typedef struct Shape {
 	unsigned long mType;		 /* Object type (Player, enemy, etc..)  */
 	AEGfxVertexList* mpMesh;	 /* This will hold the triangles which will form the shape of the object */
-	GameObjectInstance*	mpOwner; /* This component's owner */
+	GameObjectInstance* mpOwner; /* This component's owner */
 }Shape;
 
 /* --------------------------------------------------------------------------- */
@@ -94,7 +101,7 @@ struct GameObjectInstance {
 };
 
 /* --------------------------------------------------------------------------- */
-
+/*
 GameObjectInstance* GameObjectInstanceCreate(GameObjectInstance* GameObjInstList, Shape* Shapes, int* ObjectAmount, unsigned int ObjectType);
 void GameObjectInstanceDestroy(GameObjectInstance* pInst, int* ObjectAmount);
 
@@ -107,7 +114,7 @@ void RemoveComponent_Transform(GameObjectInstance *pInst);
 void RemoveComponent_Sprite(GameObjectInstance *pInst);
 void RemoveComponent_Physics(GameObjectInstance *pInst);
 void RemoveComponent_Target(GameObjectInstance *pInst);
-
+*/
 AEGfxVertexList* make_triangle_mesh(float x, float y, int color);
 AEGfxVertexList* make_rectangle_mesh(float x, float y, int color);
 AEGfxVertexList* make_circle_mesh(int parts, int color);

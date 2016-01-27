@@ -13,7 +13,6 @@
 
 #include "main.h"
 
-
 // ---------------------------------------------------------------------------
 // Static function protoypes
 
@@ -23,32 +22,35 @@
 
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
-	// Initialize the system 
+	// Initialize the system
 	AESysInitInfo sysInitInfo;
 
-	sysInitInfo.mAppInstance		= instanceH;
-	sysInitInfo.mShow				= show;
-	sysInitInfo.mWinWidth			= 1900; 
-	sysInitInfo.mWinHeight			= 1000;
-	sysInitInfo.mCreateConsole		= 1;
-	sysInitInfo.mMaxFrameRate		= 60;
-	sysInitInfo.mpWinCallBack		= NULL;//MyWinCallBack;
-	sysInitInfo.mClassStyle			= CS_HREDRAW | CS_VREDRAW;											
-	sysInitInfo.mWindowStyle		= WS_OVERLAPPEDWINDOW;//WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+	sysInitInfo.mAppInstance = instanceH;
+	sysInitInfo.mShow = show;
+	sysInitInfo.mWinWidth = X_MAX;
+	sysInitInfo.mWinHeight = Y_MAX;
+	sysInitInfo.mCreateConsole = 1;
+	sysInitInfo.mMaxFrameRate = 60;
+	sysInitInfo.mpWinCallBack = NULL;//MyWinCallBack;
+	sysInitInfo.mClassStyle = CS_HREDRAW | CS_VREDRAW;
+	sysInitInfo.mWindowStyle = WS_OVERLAPPEDWINDOW;//WS_POPUP | WS_VISIBLE | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 
-	sysInitInfo.mCreateWindow		= 1;
-	sysInitInfo.mWindowHandle		= NULL;
+	sysInitInfo.mCreateWindow = 1;
+	sysInitInfo.mWindowHandle = NULL;
 	sysInitInfo.mHandleWindowMessages = 1;
 
-	// Initialize the system
-	if (0 == AESysInit(&sysInitInfo))
+	if (!AESysInit(&sysInitInfo))
 		return 1;
 
+	System_Initialize();
 
-	GameStateMgrInit(GS_ASTEROIDS);
+	GSM_Initialize(LEVEL_1);
+
 	GSM_MainLoop();
 	
-	// free the system
+	System_Exit();
+
+	/* free the system */
 	AESysExit();
 
 	return 1;

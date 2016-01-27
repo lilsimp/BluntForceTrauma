@@ -17,7 +17,12 @@
 #include "AEEngine.h"
 
 // game state manager
-#include "GameStateMgr.h"
+#include "GameStateList.h"
+#include "GameStateManager.h"
+#include "System.h"
+
+#define X_MAX 1600
+#define Y_MAX 800
 
 #endif // MAIN_H
 

@@ -16,6 +16,7 @@ History
 #include "GameStateManager.h"
 #include "GameStateList.h"
 #include "Level1.h"
+#include "GameState_Asteroids.h"
 #include "Level.h"
 #include "Input.h"
 
@@ -40,7 +41,12 @@ unsigned int GSM_NEXT;
 static void SetAllLevels(void) {
 	int i;
 	ALL_LEVELS = (Level *)malloc(sizeof(Level) * LEVEL_NUM);
-	SET_ALL_LEVELS(1);
+	ALL_LEVELS[0].pLoad = GameStateAsteroidsLoad;
+	ALL_LEVELS[0].pInit = GameStateAsteroidsInit;
+	ALL_LEVELS[0].pUpdate = GameStateAsteroidsUpdate;
+	ALL_LEVELS[0].pDraw = GameStateAsteroidsDraw;
+	ALL_LEVELS[0].pFree = GameStateAsteroidsFree;
+	ALL_LEVELS[0].pUnload = GameStateAsteroidsUnload;
 }
 
 /***************************************************************************/
