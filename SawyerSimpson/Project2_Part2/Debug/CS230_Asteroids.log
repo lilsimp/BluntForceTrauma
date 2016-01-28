@@ -1,17 +1,23 @@
 ﻿  GameState_Asteroids.c
 c:\bluntforcetrauma\sawyersimpson\project2_part2\include\vector2d.h(17): warning C4005: 'PI': macro redefinition
   c:\bluntforcetrauma\sawyersimpson\project2_part2\include\aeexport.h(20): note: see previous definition of 'PI'
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(53): warning C4101: 'i': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(52): warning C4101: 'CircleAngleStep': unreferenced local variable
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(171): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(172): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(173): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(226): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(237): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(246): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(247): warning C4305: 'function': truncation from 'double' to 'f32'
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(252): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(253): warning C4305: 'function': truncation from 'double' to 'f32'
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(316): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(443): warning C4101: 'frameTime': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(57): warning C4101: 'i': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(56): warning C4101: 'CircleAngleStep': unreferenced local variable
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(165): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(166): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(167): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(168): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(169): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(170): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(197): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(198): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(199): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(251): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(261): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(269): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(270): warning C4305: 'function': truncation from 'double' to 'f32'
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(274): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(275): warning C4305: 'function': truncation from 'double' to 'f32'
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(335): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+c:\bluntforcetrauma\sawyersimpson\project2_part2\src\gamestate_asteroids.c(523): warning C4101: 'frameTime': unreferenced local variable
   CS230_Asteroids.vcxproj -> C:\BluntForceTrauma\SawyerSimpson\Project2_Part2\Debug\CS230_Asteroids.exe

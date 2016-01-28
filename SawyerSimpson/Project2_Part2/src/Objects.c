@@ -32,6 +32,37 @@ AEGfxVertexList* make_rectangle_mesh(float x, float y, int color) {
 	return AEGfxMeshEnd();
 }
 
+AEGfxVertexList* make_star_mesh(int color) {
+	AEGfxMeshStart();
+
+	AEGfxTriAdd(
+		 0.25f,  0.50f, color, 0.0f, 0.0f,
+	 	 0.25f, -0.50f, color, 0.0f, 0.0f,
+		-0.25f, -0.50f, color, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		 0.25f,  0.50f, color, 0.0f, 0.0f,
+		-0.25f,  0.50f, color, 0.0f, 0.0f,
+		-0.25f, -0.50f, color, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		 0.50f,  0.25f, color, 0.0f, 0.0f,
+		 0.25f,  0.25f, color, 0.0f, 0.0f,
+		 0.25f, -0.25f, color, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		 0.50f,  0.25f, color, 0.0f, 0.0f,
+		 0.50f, -0.25f, color, 0.0f, 0.0f,
+		 0.25f, -0.25f, color, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		-0.50f,  0.25f, color, 0.0f, 0.0f,
+		-0.25f,  0.25f, color, 0.0f, 0.0f,
+		-0.25f, -0.25f, color, 0.0f, 0.0f);
+	AEGfxTriAdd(
+		-0.50f,  0.25f, color, 0.0f, 0.0f,
+		-0.50f, -0.25f, color, 0.0f, 0.0f,
+		-0.25f, -0.25f, color, 0.0f, 0.0f);
+
+	return AEGfxMeshEnd();
+}
+
 AEGfxVertexList* make_circle_mesh(int parts, int color) {
 	float CircleAngleStep;
 	int i;

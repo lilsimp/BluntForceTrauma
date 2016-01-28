@@ -10,9 +10,6 @@
     <ClCompile Include="src\Matrix2D.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Objects.c">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Vector2D.c">
       <Filter>src</Filter>
     </ClCompile>
@@ -29,6 +26,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
