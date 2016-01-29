@@ -1,4 +1,0 @@
-System:Initialize
-GSM:Initialize
-GSM:Update
-System:Exit

@@ -10,7 +10,8 @@
 
 #include "main.h"
 #include "Matrix2D.h"
-#include "Objects.h"
+#include "Math2D.h"
+#include "Objects.c"
 
 // ---------------------------------------------------------------------------
 
@@ -24,9 +25,13 @@
 #define BULLET_SPEED				500.0f				// Bullet speed (m/s)
 #define MAX_SPEED                   200.0f
 #define DRAG_SPEED                  0.99f
-#define STAR_1_SPEED                0.80f
-#define STAR_2_SPEED                0.85f
+#define STAR_AMOUNT                 125
+#define ASTEROID_AMOUNT             25
+#define STAR_1_SPEED                0.85f
+#define STAR_2_SPEED                0.88f
 #define STAR_3_SPEED                0.90f
+#define PLANET_SPEED                0.50f
+#define PLANET_SIZE                 400.0f
 
 // ---------------------------------------------------------------------------
 
@@ -36,6 +41,13 @@ extern unsigned int GSM_NEXT;
 
 // pointer ot the ship object
 static GameObjectInstance* sgpShip;
+
+static AEGfxTexture* tpShipStill;
+static AEGfxTexture* tpShipMoving;
+static AEGfxTexture* tpStar;
+static AEGfxTexture* tpBullet;
+static AEGfxTexture* tpAsteroid;
+static AEGfxTexture* tpPlanet[3];
 
 // number of ship available (lives 0 = game over)
 static long	sgShipLives;// The number of lives left
@@ -66,6 +78,14 @@ void GameStateAsteroidsLoad(void)
 	// The ship object instance hasn't been created yet, so this "sgpShip" pointer is initialized to 0
 	sgpShip = 0;
 
+	tpShipStill  = AEGfxTextureLoad("Ship.png");
+	tpShipMoving = AEGfxTextureLoad("ShipMoving.png");
+	tpStar       = AEGfxTextureLoad("Star.png");
+	tpBullet     = AEGfxTextureLoad("Bullet.png");
+	tpAsteroid   = AEGfxTextureLoad("Asteroid.jpg");
+	tpPlanet[0]  = AEGfxTextureLoad("Planet_01.png");
+	tpPlanet[1]  = AEGfxTextureLoad("Planet_02.png");
+	tpPlanet[2]  = AEGfxTextureLoad("Planet_03.png");
 
 
 	// Create the game objects(shapes) : Ships, Bullet, Asteroid and Missile
@@ -88,9 +108,8 @@ void GameStateAsteroidsLoad(void)
 	// =====================
 
 	pShape = sgShapes + sgShapeNum++;
-	pShape->mType  = OBJECT_TYPE_SHIP;
-	pShape->mpMesh = make_triangle_mesh(0.5f, 0.5f, 0xFFFF0000);
-
+	pShape->mType = OBJECT_TYPE_SHIP;
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +120,7 @@ void GameStateAsteroidsLoad(void)
 
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_BULLET;
-	pShape->mpMesh = make_rectangle_mesh(0.5f, 0.5f, 0xFFD1CE69);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +131,7 @@ void GameStateAsteroidsLoad(void)
 
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_ASTEROID;
-	pShape->mpMesh = make_rectangle_mesh(0.5f, 0.5f, 0xFF663333);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,26 +142,37 @@ void GameStateAsteroidsLoad(void)
 	
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_HOMING_MISSILE;
-	pShape->mpMesh = make_triangle_mesh(0.5f, 0.5f, 0xFFFF00FF);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// TO DO 10:
+	// TO DO 13:
 	// -- Create the star shape
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_STAR_1; 
-	pShape->mpMesh = make_star_mesh(0xFFFFFFFF);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_STAR_2;
-	pShape->mpMesh = make_star_mesh(0xFFF2FAC8);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 
 	pShape = sgShapes + sgShapeNum++;
 	pShape->mType = OBJECT_TYPE_STAR_3;
-	pShape->mpMesh = make_star_mesh(0xFFEFFF9E);
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	// TO DO 14:
+	// -- Create the planet shape
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+
+	pShape = sgShapes + sgShapeNum++;
+	pShape->mType = OBJECT_TYPE_PLANET;
+	pShape->mpMesh = make_rectangle_mesh(0x00FFFFFF);
 }
 
 // ---------------------------------------------------------------------------
@@ -160,28 +190,42 @@ void GameStateAsteroidsInit(void)
 	// No game object instances (sprites) at this point
 	sgGameObjectInstanceNum = 0;
 
-	for (i = 0; i < 100; ++i) {
+	for (i = 0; i < STAR_AMOUNT; ++i) {
 		GameObjectInstance* pStar1, *pStar2, *pStar3;
-		float scale1 = rand() % 2 + 1;
-		float scale2 = rand() % 3 + 1;
-		float scale3 = rand() % 4 + 1;
+		float scale1 = rand() % 4 + 1;
+		float scale2 = rand() % 5 + 1;
+		float scale3 = rand() % 6 + 1;
 		Vector2D spnPoint1 = { (rand() % (X_MAX * 2)) - X_MAX, (rand() % (Y_MAX * 2)) - Y_MAX };
 		Vector2D spnPoint2 = { (rand() % (X_MAX * 2)) - X_MAX, (rand() % (Y_MAX * 2)) - Y_MAX };
 		Vector2D spnPoint3 = { (rand() % (X_MAX * 2)) - X_MAX, (rand() % (Y_MAX * 2)) - Y_MAX };
 
 		pStar1 = GameObjectInstanceCreate(OBJECT_TYPE_STAR_1);
 		AddComponent_Transform(pStar1, &spnPoint1, pStar1->mpComponent_Transform->mAngle, scale1, scale1);
+		pStar1->spriteSource = tpStar;
 
 		pStar2 = GameObjectInstanceCreate(OBJECT_TYPE_STAR_2);
 		AddComponent_Transform(pStar2, &spnPoint2, pStar2->mpComponent_Transform->mAngle, scale2, scale2);
+		pStar2->spriteSource = tpStar;
 
 		pStar3 = GameObjectInstanceCreate(OBJECT_TYPE_STAR_3);
 		AddComponent_Transform(pStar3, &spnPoint3, pStar3->mpComponent_Transform->mAngle, scale3, scale3);
+		pStar3->spriteSource = tpStar;
+	}
+
+	for (i = 0; i < 1; ++i) {
+		GameObjectInstance* pPlanet;
+		int planet = rand() % 3;
+		Vector2D spnPoint = { (rand() % (X_MAX * 2)) - X_MAX, (rand() % (Y_MAX * 2)) - Y_MAX };
+
+		pPlanet = GameObjectInstanceCreate(OBJECT_TYPE_PLANET);
+		AddComponent_Transform(pPlanet, &spnPoint, pPlanet->mpComponent_Transform->mAngle, PLANET_SIZE, PLANET_SIZE);
+		pPlanet->spriteSource = tpPlanet[planet];
 	}
 
 	// create the main ship
 	sgpShip = GameObjectInstanceCreate(OBJECT_TYPE_SHIP);
-	AddComponent_Transform(sgpShip, &sgpShip->mpComponent_Transform->mPosition, sgpShip->mpComponent_Transform->mAngle, 40.0f, 30.0f);
+	AddComponent_Transform(sgpShip, &sgpShip->mpComponent_Transform->mPosition, sgpShip->mpComponent_Transform->mAngle, 80.0f, 60.0f);
+	sgpShip->spriteSource = tpShipStill;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,15 +236,16 @@ void GameStateAsteroidsInit(void)
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 
-	for (i = 0; i < 20; ++i) {
+	for (i = 0; i < ASTEROID_AMOUNT; ++i) {
 		GameObjectInstance* pAsteroid;
 		float scale = rand() % 20 + 30;
 		Vector2D velocity = { rand() % 30 - 15, rand() % 30 - 15};
 		Vector2D spnPoint = { (rand() % (X_MAX * 2)) - X_MAX, (rand() % (Y_MAX * 2)) - Y_MAX };
 
 		pAsteroid = GameObjectInstanceCreate(OBJECT_TYPE_ASTEROID);
-		AddComponent_Transform(pAsteroid, &spnPoint, sgpShip->mpComponent_Transform->mAngle, scale, scale);
+		AddComponent_Transform(pAsteroid, &spnPoint, pAsteroid->mpComponent_Transform->mAngle, scale, scale);
 		AddComponent_Physics(pAsteroid, &velocity);
+		pAsteroid->spriteSource = tpAsteroid;
 	}
 
 	// reset the score and the number of ship
@@ -236,6 +281,9 @@ void GameStateAsteroidsUpdate(void)
 	// Update according to input
 	// =========================
 
+	sgpShip->spriteSource = tpShipStill;
+
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// TO DO 3:
@@ -253,6 +301,8 @@ void GameStateAsteroidsUpdate(void)
 		Vector2DAdd(&sgpShip->mpComponent_Physics->mVelocity, &sgpShip->mpComponent_Physics->mVelocity, &direction);
 
 		update_ship_velocity();
+
+		sgpShip->spriteSource = tpShipMoving;
 	}
 
 	if (AEInputCheckCurr(VK_DOWN) || AEInputCheckCurr('S')) {
@@ -263,6 +313,8 @@ void GameStateAsteroidsUpdate(void)
 		Vector2DAdd(&sgpShip->mpComponent_Physics->mVelocity, &sgpShip->mpComponent_Physics->mVelocity, &direction);
 
 		update_ship_velocity();
+
+		sgpShip->spriteSource = tpShipMoving;
 	}
 
 	if (AEInputCheckCurr(VK_LEFT) || AEInputCheckCurr('A')) {
@@ -289,8 +341,9 @@ void GameStateAsteroidsUpdate(void)
 		Vector2DScaleAdd(&velocity, &velocity, &sgpShip->mpComponent_Physics->mVelocity, BULLET_SPEED);
 
 		bullet = GameObjectInstanceCreate(OBJECT_TYPE_BULLET);
-		AddComponent_Transform(bullet, &sgpShip->mpComponent_Transform->mPosition, sgpShip->mpComponent_Transform->mAngle, 10.0f, 5.0f);
+		AddComponent_Transform(bullet, &sgpShip->mpComponent_Transform->mPosition, sgpShip->mpComponent_Transform->mAngle, 50.0f, 25.0f);
 		AddComponent_Physics(bullet, &velocity);
+		bullet->spriteSource = tpBullet;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -309,6 +362,7 @@ void GameStateAsteroidsUpdate(void)
 		bullet = GameObjectInstanceCreate(OBJECT_TYPE_HOMING_MISSILE);
 		AddComponent_Transform(bullet, &sgpShip->mpComponent_Transform->mPosition, sgpShip->mpComponent_Transform->mAngle, 15.0f, 8.0f);
 		AddComponent_Physics(bullet, &velocity);
+		bullet->spriteSource = tpBullet;
 	}
 
 	if (AEInputCheckTriggered('R'))	{
@@ -366,7 +420,7 @@ void GameStateAsteroidsUpdate(void)
 
 		// Bullet behavior
 		else if (pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_BULLET) {
-			if (Vector2DSquareDistance(&pInst->mpComponent_Transform->mPosition, &sgpShip->mpComponent_Transform->mPosition) > (X_MAX / 2) * (X_MAX / 2)) {
+			if (Vector2DSquareDistance(&pInst->mpComponent_Transform->mPosition, &sgpShip->mpComponent_Transform->mPosition) > X_MAX * X_MAX) {
 				GameObjectInstanceDestroy(pInst);
 			}
 
@@ -408,6 +462,17 @@ void GameStateAsteroidsUpdate(void)
 
 			pInst->mpComponent_Transform->mPosition.x = AEWrap(pInst->mpComponent_Transform->mPosition.x, winMinX - SHIP_SIZE, winMaxX + SHIP_SIZE);
 			pInst->mpComponent_Transform->mPosition.y = AEWrap(pInst->mpComponent_Transform->mPosition.y, winMinY - SHIP_SIZE, winMaxY + SHIP_SIZE);
+		}
+		else if (pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_PLANET) {
+			Vector2DSet(&pInst->mpComponent_Physics->mVelocity, sgpShip->mpComponent_Physics->mVelocity.x, sgpShip->mpComponent_Physics->mVelocity.y);
+			Vector2DScale(&pInst->mpComponent_Physics->mVelocity, &pInst->mpComponent_Physics->mVelocity, PLANET_SPEED);
+
+			if (Vector2DSquareDistance(&pInst->mpComponent_Transform->mPosition, &sgpShip->mpComponent_Transform->mPosition) > X_MAX * X_MAX) {
+				int planet = rand() % 3;
+				pInst->mpComponent_Transform->mPosition.x = AEWrap(pInst->mpComponent_Transform->mPosition.x, winMinX - PLANET_SIZE, winMaxX + PLANET_SIZE);
+				pInst->mpComponent_Transform->mPosition.y = AEWrap(pInst->mpComponent_Transform->mPosition.y, winMinY - PLANET_SIZE, winMaxY + PLANET_SIZE);
+				pInst->spriteSource = tpPlanet[planet];
+			}
 		}
 
 	}
@@ -462,14 +527,24 @@ void GameStateAsteroidsUpdate(void)
 				GameObjectInstance* pInst = sgGameObjectInstanceList + j;
 
 
-				if ((pInst->mFlag & FLAG_ACTIVE) == 0 || pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_ASTEROID)
+				if ((pInst->mFlag & FLAG_ACTIVE) == 0)
 					continue;
 
-				if (pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_SHIP) {
-
+				else if (pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_SHIP) {
+					if (StaticRectToStaticRect(&pInst->mpComponent_Transform->mPosition, pInst->mpComponent_Transform->mScaleX, pInst->mpComponent_Transform->mScaleY, &pAsteroid->mpComponent_Transform->mPosition, pAsteroid->mpComponent_Transform->mScaleX, pAsteroid->mpComponent_Transform->mScaleY) == 1) {
+						Vector2DZero(&sgpShip->mpComponent_Transform->mPosition);
+						GameObjectInstanceDestroy(pAsteroid);
+						sgShipLives--;
+						break;
+					}
 				}
 				else if (pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_BULLET || pInst->mpComponent_Sprite->mpShape->mType == OBJECT_TYPE_HOMING_MISSILE) {
-
+					if (StaticRectToStaticRect(&pInst->mpComponent_Transform->mPosition, pInst->mpComponent_Transform->mScaleX, pInst->mpComponent_Transform->mScaleY, &pAsteroid->mpComponent_Transform->mPosition, pAsteroid->mpComponent_Transform->mScaleX, pAsteroid->mpComponent_Transform->mScaleY) == 1) {
+						GameObjectInstanceDestroy(pAsteroid);
+						GameObjectInstanceDestroy(pInst);
+						sgScore += 5;
+						break;
+					}
 				}
 			}
 		}
@@ -522,8 +597,7 @@ void GameStateAsteroidsDraw(void)
 	unsigned long i;
 	double frameTime;
 
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	AEGfxTextureSet(NULL, 0, 0);
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// draw all object instances in the list
@@ -535,7 +609,7 @@ void GameStateAsteroidsDraw(void)
 		// skip non-active object
 		if ((pInst->mFlag & FLAG_ACTIVE) == 0)
 			continue;
-		
+
 		// Already implemented. Explanation:
 		// Step 1 & 2 are done outside the for loop (AEGfxSetRenderMode, AEGfxTextureSet, AEGfxSetTintColor) since all our objects share the same material.
 		// If you want to have objects with difference materials (Some with textures, some without, some with transparency etc...)
@@ -544,7 +618,8 @@ void GameStateAsteroidsDraw(void)
 		// 2 - Set all needed parameters (Color blend, textures, etc..)
 		// 3 - Set the current object instance's mTransform matrix using "AEGfxSetTransform"
 		// 4 - Draw the shape used by the current object instance using "AEGfxMeshDraw"
-		
+
+		AEGfxTextureSet(pInst->spriteSource, 0.0f, 0.0f);
 		AEGfxSetTransform(pInst->mpComponent_Transform->mTransform.m);
 		AEGfxMeshDraw(pInst->mpComponent_Sprite->mpShape->mpMesh, AE_GFX_MDM_TRIANGLES);
 	}
@@ -581,6 +656,16 @@ void GameStateAsteroidsUnload(void)
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	int i;
 
+	AEGfxTextureUnload(tpStar);
+	AEGfxTextureUnload(tpBullet);
+	AEGfxTextureUnload(tpAsteroid);
+	AEGfxTextureUnload(tpPlanet);
+	AEGfxTextureUnload(tpShipMoving);
+	AEGfxTextureUnload(tpShipStill);
+	AEGfxTextureUnload(tpPlanet[0]);
+	AEGfxTextureUnload(tpPlanet[1]);
+	AEGfxTextureUnload(tpPlanet[2]);
+
 	for (i = 0; i < SHAPE_NUM_MAX; ++i) {
 		Shape* pShape = sgShapes + i;
 		AEGfxMeshFree(pShape->mpMesh);
@@ -608,219 +693,5 @@ void update_ship_velocity() {
 		Vector2DScale(&sgpShip->mpComponent_Physics->mVelocity, &temp, MAX_SPEED);
 	}
 }
-
-
-GameObjectInstance* GameObjectInstanceCreate(unsigned int ObjectType)			// From OBJECT_TYPE enum)
-{
-	unsigned long i;
-
-	// loop through the object instance list to find a non-used object instance
-	for (i = 0; i < GAME_OBJ_INST_NUM_MAX; i++)
-	{
-		GameObjectInstance* pInst = sgGameObjectInstanceList + i;
-
-		// Check if current instance is not used
-		if (pInst->mFlag == 0)
-		{
-			// It is not used => use it to create the new instance
-
-			// Active the game object instance
-			pInst->mFlag = FLAG_ACTIVE;
-
-			pInst->mpComponent_Transform = 0;
-			pInst->mpComponent_Sprite = 0;
-			pInst->mpComponent_Physics = 0;
-			pInst->mpComponent_Target = 0;
-
-			// Add the components, based on the object type
-			switch (ObjectType)
-			{
-			case OBJECT_TYPE_SHIP:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_SHIP);
-				break;
-
-			case OBJECT_TYPE_BULLET:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_BULLET);
-				break;
-
-			case OBJECT_TYPE_ASTEROID:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_ASTEROID);
-				break;
-
-			case OBJECT_TYPE_STAR_1:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_STAR_1);
-				break;
-
-			case OBJECT_TYPE_STAR_2:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_STAR_2);
-				break;
-
-			case OBJECT_TYPE_STAR_3:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_STAR_3);
-				break;
-
-			case OBJECT_TYPE_HOMING_MISSILE:
-				AddComponent_Sprite(pInst, OBJECT_TYPE_HOMING_MISSILE);
-				AddComponent_Target(pInst, 0);
-				break;
-			}
-			AddComponent_Transform(pInst, 0, 0.0f, 1.0f, 1.0f);
-			AddComponent_Physics(pInst, 0);
-
-			++sgGameObjectInstanceNum;
-
-			// return the newly created instance
-			return pInst;
-		}
-	}
-
-	// Cannot find empty slot => return 0
-	return 0;
-}
-
-void GameObjectInstanceDestroy(GameObjectInstance* pInst)
-{
-	// if instance is destroyed before, just return
-	if (pInst->mFlag == 0)
-		return;
-
-	// Zero out the mFlag
-	pInst->mFlag = 0;
-
-	RemoveComponent_Transform(pInst);
-	RemoveComponent_Sprite(pInst);
-	RemoveComponent_Physics(pInst);
-	RemoveComponent_Target(pInst);
-
-	--sgGameObjectInstanceNum;
-}
-
-void AddComponent_Transform(GameObjectInstance *pInst, Vector2D *pPosition, float Angle, float ScaleX, float ScaleY)
-{
-	if (0 != pInst)
-	{
-		if (0 == pInst->mpComponent_Transform)
-		{
-			pInst->mpComponent_Transform = (Component_Transform *)calloc(1, sizeof(Component_Transform));
-		}
-
-		Vector2D zeroVec2;
-		Vector2DZero(&zeroVec2);
-
-		pInst->mpComponent_Transform->mScaleX = ScaleX;
-		pInst->mpComponent_Transform->mScaleY = ScaleY;
-		pInst->mpComponent_Transform->mPosition = pPosition ? *pPosition : zeroVec2;;
-		pInst->mpComponent_Transform->mAngle = Angle;
-		pInst->mpComponent_Transform->mpOwner = pInst;
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void AddComponent_Sprite(GameObjectInstance *pInst, unsigned int ShapeType)
-{
-	if (0 != pInst)
-	{
-		if (0 == pInst->mpComponent_Sprite)
-		{
-			pInst->mpComponent_Sprite = (Component_Sprite *)calloc(1, sizeof(Component_Sprite));
-		}
-
-		pInst->mpComponent_Sprite->mpShape = sgShapes + ShapeType;
-		pInst->mpComponent_Sprite->mpOwner = pInst;
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void AddComponent_Physics(GameObjectInstance *pInst, Vector2D *pVelocity)
-{
-	if (0 != pInst)
-	{
-		if (0 == pInst->mpComponent_Physics)
-		{
-			pInst->mpComponent_Physics = (Component_Physics *)calloc(1, sizeof(Component_Physics));
-		}
-
-		Vector2D zeroVec2;
-		Vector2DZero(&zeroVec2);
-
-		pInst->mpComponent_Physics->mVelocity = pVelocity ? *pVelocity : zeroVec2;
-		pInst->mpComponent_Physics->mpOwner = pInst;
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void AddComponent_Target(GameObjectInstance *pInst, GameObjectInstance *pTarget)
-{
-	if (0 != pInst)
-	{
-		if (0 == pInst->mpComponent_Target)
-		{
-			pInst->mpComponent_Target = (Component_Target *)calloc(1, sizeof(Component_Target));
-		}
-
-		pInst->mpComponent_Target->mpTarget = pTarget;
-		pInst->mpComponent_Target->mpOwner = pInst;
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void RemoveComponent_Transform(GameObjectInstance *pInst)
-{
-	if (0 != pInst)
-	{
-		if (0 != pInst->mpComponent_Transform)
-		{
-			free(pInst->mpComponent_Transform);
-			pInst->mpComponent_Transform = 0;
-		}
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void RemoveComponent_Sprite(GameObjectInstance *pInst)
-{
-	if (0 != pInst)
-	{
-		if (0 != pInst->mpComponent_Sprite)
-		{
-			free(pInst->mpComponent_Sprite);
-			pInst->mpComponent_Sprite = 0;
-		}
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void RemoveComponent_Physics(GameObjectInstance *pInst)
-{
-	if (0 != pInst)
-	{
-		if (0 != pInst->mpComponent_Physics)
-		{
-			free(pInst->mpComponent_Physics);
-			pInst->mpComponent_Physics = 0;
-		}
-	}
-}
-
-// ---------------------------------------------------------------------------
-
-void RemoveComponent_Target(GameObjectInstance *pInst)
-{
-	if (0 != pInst)
-	{
-		if (0 != pInst->mpComponent_Target)
-		{
-			free(pInst->mpComponent_Target);
-			pInst->mpComponent_Target = 0;
-		}
-	}
-}
-
 
 

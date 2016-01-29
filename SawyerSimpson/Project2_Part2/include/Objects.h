@@ -14,6 +14,7 @@ enum OBJECT_TYPE
 	OBJECT_TYPE_STAR_1,
 	OBJECT_TYPE_STAR_2,
 	OBJECT_TYPE_STAR_3,
+	OBJECT_TYPE_PLANET,
 	OBJECT_TYPE_NUM
 };
 
@@ -32,15 +33,14 @@ typedef struct GameObjectInstance GameObjectInstance;
 // Struct/Class definitions
 
 typedef struct Shape {
-	unsigned long mType;				// Object type (Ship, bullet, etc..)
-	AEGfxVertexList* mpMesh;				// This will hold the triangles which will form the shape of the object
+	unsigned long mType;	 // Object type (Ship, bullet, etc..)
+	AEGfxVertexList* mpMesh; // This will hold the triangles which will form the shape of the object
 }Shape;
 
 // ---------------------------------------------------------------------------
 
 typedef struct Component_Sprite {
 	Shape *mpShape;
-	AEGfxTexture* spriteSource;  // This component's sprite
 	GameObjectInstance* mpOwner; // This component's owner
 }Component_Sprite;
 
@@ -79,24 +79,25 @@ typedef struct
 struct GameObjectInstance
 {
 	unsigned long mFlag;						// Bit mFlag, used to indicate if the object instance is active or not
-
+	AEGfxTexture* spriteSource;                 // This component's sprite
 	Component_Sprite* mpComponent_Sprite;		// Sprite component
-	Component_Transform* mpComponent_Transform;		// Transform component
+	Component_Transform* mpComponent_Transform;	// Transform component
 	Component_Physics* mpComponent_Physics;		// Physics component
 	Component_Target* mpComponent_Target;		// Target component, used by the homing missile
 };
 
-static Shape sgShapes[SHAPE_NUM_MAX];									// Each element in this array represents a unique shape 
-static unsigned long sgShapeNum;													// The number of defined shapes
+static Shape sgShapes[SHAPE_NUM_MAX]; // Each element in this array represents a unique shape 
+static unsigned long sgShapeNum;	  // The number of defined shapes
 
-																						// list of object instances
-static GameObjectInstance sgGameObjectInstanceList[GAME_OBJ_INST_NUM_MAX];	        // Each element in this array represents a unique game object instance
+// list of object instances
+static GameObjectInstance sgGameObjectInstanceList[GAME_OBJ_INST_NUM_MAX];
 static unsigned long sgGameObjectInstanceNum;
 
 // ---------------------------------------------------------------------------
 // Static variables
-																						// functions to create/destroy a game object instance
-GameObjectInstance*	GameObjectInstanceCreate(unsigned int ObjectType);			// From OBJECT_TYPE enum
+
+// functions to create/destroy a game object instance
+GameObjectInstance*	GameObjectInstanceCreate(unsigned int ObjectType);
 void GameObjectInstanceDestroy(GameObjectInstance* pInst);
 
 void AddComponent_Transform(GameObjectInstance *pInst, Vector2D *pPosition, float Angle, float ScaleX, float ScaleY);
@@ -109,9 +110,9 @@ void RemoveComponent_Sprite(GameObjectInstance *pInst);
 void RemoveComponent_Physics(GameObjectInstance *pInst);
 void RemoveComponent_Target(GameObjectInstance *pInst);
 
-AEGfxVertexList* make_triangle_mesh(float x, float y, int color);
-AEGfxVertexList* make_rectangle_mesh(float x, float y, int color);
+AEGfxVertexList* make_triangle_mesh(int color);
+AEGfxVertexList* make_rectangle_mesh(int color);
 AEGfxVertexList* make_star_mesh(int color);
 AEGfxVertexList* make_circle_mesh(int parts, int color);
-AEGfxVertexList* make_halfcap_mesh(float x, float y, int parts, int color);
+AEGfxVertexList* make_halfcap_mesh(int parts, int color);
 

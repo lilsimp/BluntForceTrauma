@@ -28,9 +28,6 @@
     <ClCompile Include="src\main.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Objects.c">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\GameStateList.h">

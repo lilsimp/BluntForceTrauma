@@ -87,7 +87,6 @@
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\Math2D.c" />
     <ClCompile Include="src\Matrix2D.c" />
-    <ClCompile Include="src\Objects.c" />
     <ClCompile Include="src\System.c" />
     <ClCompile Include="src\Vector2D.c" />
   </ItemGroup>
